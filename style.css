@@ -1,0 +1,661 @@
+/* ==========================================================================
+   GLOBAL STYLES & RESET
+   ========================================================================== */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 40px 20px;
+    color: #333;
+    overflow-x: hidden;
+    position: relative;
+    transition: background-color 0.5s ease;
+    background: linear-gradient(45deg, 
+        rgba(168, 230, 207, 0.3), 
+        rgba(168, 230, 207, 0.1), 
+        rgba(168, 230, 207, 0.2), 
+        rgba(168, 230, 207, 0.4));
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease-in-out infinite;
+    animation: pageLoad 0.8s ease forwards;
+}
+
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+
+@keyframes dynamicGradient {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes slideInFromLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes breathe {
+    0% {
+        transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(1) rotateY(0deg);
+    }
+    50% {
+        transform: translate(-50%, calc(-50% - 5px)) translate(var(--tx), var(--ty)) scale(1) rotateY(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(1) rotateY(0deg);
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% { 
+        background-position: 0% 50%; 
+    }
+    50% { 
+        background-position: 100% 50%; 
+    }
+}
+
+@keyframes breatheHeader {
+    0%, 100% {
+        transform: translate(-50%, -50%) translate(var(--hx), var(--hy));
+    }
+    50% {
+        transform: translate(-50%, calc(-50% - 5px)) translate(var(--hx), var(--hy));
+    }
+}
+
+@keyframes slideInTOC {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide down animation for back button */
+@keyframes slideDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade in up animation */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes headerFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Loading animation for the entire page */
+@keyframes pageLoad {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ==========================================================================
+   CURSOR STYLES
+   ========================================================================== */
+
+.cursor-circle {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(168, 230, 207, 0.5);
+    pointer-events: none;
+    z-index: 1001;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-radius 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    will-change: transform;
+}
+
+.cursor-circle.expanded {
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cursor-circle.expanded .cursor-image {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   LAYOUT CONTAINERS
+   ========================================================================== */
+
+
+/* Add a new full-screen dynamic gradient layer */
+.dynamic-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    /* Use multiple pastel stops for a richer color mix */
+    background: linear-gradient(45deg, 
+        rgba(168,230,207,0.3), 
+        rgba(255,182,193,0.2), 
+        rgba(173,216,230,0.2), 
+        rgba(168,230,207,0.3));
+    background-size: 600% 600%;
+    animation: dynamicGradient 60s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   PROJECT BUTTONS
+   ========================================================================== */
+
+.portfolio-container {
+    margin-left: 5%;
+    position: relative;
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+
+.project-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: max-content;
+}
+
+.project-button {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(255, 255, 255, 0);
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    
+    /* Initial animation state */
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInFromLeft 0.6s ease forwards;
+}
+
+/* Staggered animation delays for project buttons */
+.project-button:nth-child(1) { animation-delay: 0.1s; }
+.project-button:nth-child(2) { animation-delay: 0.2s; }
+.project-button:nth-child(3) { animation-delay: 0.3s; }
+.project-button:nth-child(4) { animation-delay: 0.4s; }
+.project-button:nth-child(5) { animation-delay: 0.5s; }
+.project-button:nth-child(6) { animation-delay: 0.6s; }
+.project-button:nth-child(7) { animation-delay: 0.7s; }
+.project-button:nth-child(8) { animation-delay: 0.8s; }
+
+.project-button:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+.project-title {
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 20px;
+    color: #333;
+}
+
+.project-date {
+    font-size: 10px;
+    color: #7f8c8d;
+    margin: 0;
+}
+
+.project-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    margin-top: 8px;
+}
+
+.project-image {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* Use max dimensions to constrain the image */
+    max-width: 40vw;
+    max-height: 60vh;
+    min-width: 0;
+    min-height: 0;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    /* Custom properties for transform control */
+    --tx: 0px;
+    --ty: 0px;
+    --scale: 0;
+    --rotate: 90deg;
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(var(--scale)) rotateY(var(--rotate));
+    transform-origin: center center;
+    transition: 
+      transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      opacity 0.6s ease;
+    z-index: 50;
+    pointer-events: none;
+}
+
+
+
+/* Update the .project-image.visible rule to include the breathing animation */
+.project-image.visible {
+    opacity: 1;
+    --scale: 1;
+    --rotate: 0deg;
+    animation: breathe 5s ease-in-out infinite;
+}
+
+.project-image.moving {
+    transition: transform 0.1s ease-out;
+}
+
+
+
+
+
+.header {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    --hx: 0px;
+    --hy: 0px;
+    z-index: 2;
+    transform: translate(-50%, -50%) translate(var(--hx), var(--hy));
+    animation: breatheHeader 5s ease-in-out infinite;
+    gap: 5px;
+    
+    /* Initial animation state */
+    opacity: 0;
+    
+    /* Smooth transition for position changes */
+    transition: transform 0.3s ease, left 0.3s ease;
+}
+
+
+/* Adaptive positioning when header would overlap with portfolio */
+@media (max-width: 1200px) {
+    .header {
+        left: 65%;
+        transform: translate(-50%, -50%) translate(var(--hx), var(--hy));
+    }
+}
+
+@media (max-width: 900px) {
+    .header {
+        left: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        position: absolute;
+        left: 50%;
+        top: 150px; /* Position at top */
+        transform: translate(-50%, 0); /* Center horizontally, no vertical centering */
+        text-align: center;
+        align-items: center;
+        margin: 0;
+        padding: 0 20px;
+        z-index: 10;
+        width: 100%;
+    }
+    
+    .header {
+        animation: none; /* Remove breathing animation on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .navigation-links {
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* Header content animations */
+.header-content {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.header-content .title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #333;
+    cursor: default;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: 0.5s;
+}
+
+#name {
+    font-weight: 900;
+    color: #333;
+    font-size:16px;
+    transition: color 0.3s ease;
+}
+
+.header-content .subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+    cursor: default;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: 0.7s;
+}
+
+/* Table of Contents Styles */
+.table-of-contents {
+    position: fixed;
+    left: 30px;
+    top: 100px;
+    max-width: 250px;
+    z-index: 50;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInTOC 0.8s ease forwards;
+    animation-delay: 1s;
+}
+
+.toc-header h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+.toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.toc-item {
+    margin-bottom: 0px;
+}
+
+.toc-link {
+    display: block;
+    padding: 5px 10px;
+    font-size: 8px;
+    font-weight: 500;
+    color: rgba(0,0,0, 0.3);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    line-height: 1.4;
+}
+
+.toc-link:hover {
+    color: #333;
+    transform: translateX(4px);
+}
+
+.toc-link.active {
+    color: #333;
+    font-weight: 600;
+    font-size:11px;
+}
+
+/* Scrollbar styling for TOC */
+.table-of-contents::-webkit-scrollbar {
+    width: 4px;
+}
+
+.table-of-contents::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.table-of-contents::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+.table-of-contents::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Navigation back button */
+.back-button {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideDown 0.8s ease forwards;
+    animation-delay: 0.1s;
+}
+
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(0) scale(1.1);
+}
+
+
+.navigation-links {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: 0.9s;
+}
+
+.navigation-link {
+    font-size: 10px;
+    font-weight: 500;
+    color: #333;
+    opacity: 0.8;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    padding: 5px 8px;
+}
+
+.navigation-link:hover {
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+
+/* Header initial fade in */
+.header {
+    animation: headerFadeIn 1s ease forwards, breatheHeader 5s ease-in-out infinite 1s;
+}
+
+
+
+/* Enhance hover animations */
+.project-button:hover .project-title {
+    transform: translateX(3px);
+    transition: transform 0.3s ease;
+}
+
+.project-button:hover .project-date {
+    transform: translateX(-3px);
+    transition: transform 0.3s ease;
+}
+
+/* Add a subtle pulse to navigation links */
+.navigation-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.navigation-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.navigation-link:hover::before {
+    left: 100%;
+}
+
+
+
+
+
+@media (max-width: 968px) {
+    .table-of-contents {
+        display: none;
+    }
+}
+
+/* Adjust project container margin for larger screens */
+@media (min-width: 1400px) {
+    .project-container {
+        margin-left: 280px;
+    }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+    .project-image {
+        max-width: 50vw;
+        max-height: 60vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .cursor-circle{
+        display: none;
+    }
+    .project-image {
+        max-width: 70vw;
+        max-height: 40vh;
+    }
+    
+    .portfolio-container {
+        margin-left: 2%;
+        margin-top:200px;
+    }
+    
+    .project-title {
+        font-size: 11px;
+    }
+    
+    .project-date {
+        font-size: 9px;
+    }
+    
+    .header-content .title {
+        font-size: 14px;
+    }
+    
+    .header-content .subtitle {
+        font-size: 11px;
+    }
+    
+    .navigation-links {
+        gap: 15px;
+    }
+    
+    .navigation-link {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-image {
+        max-width: 80vw;
+        max-height: 80vh;
+    }
+    
+    .navigation-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .navigation-links {
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Delivery Optimization - Project</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../assets/css/project.css">
+    <script src="../script.js" defer></script>
+    <script src="../assets/js/project-animations.js" defer></script>
+    <script src="../assets/js/table-of-contents.js" defer></script>
+
+</head>
+<body data-color="#8494a4">
+    <div class="dynamic-gradient"></div>
+    <div class="cursor-circle" id="cursorCircle"></div>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-close" id="modalClose">×</div>
+        <img src="" alt="" class="modal-image" id="modalImage">
+    </div>
+
+    <a href="../index.html" class="back-button">←</a>
+
+    <header class="project-header">
+        <h1 class="title">Drone Delivery Optimization</h1>
+        <p class="subtitle">An advanced Python project exploring drone delivery route optimization using pathfinding algorithms and 3D city modeling. Demonstrates efficient navigation in urban environments while avoiding buildings and restricted areas.</p>
+        
+        <div class="status-container">
+            <div class="status-badge completed">
+                <div class="status-icon"></div>
+                Completed
+            </div>
+        </div> 
+        
+        <div class="icon-container">
+            <img class="project-icon" src="../assets/icons/logo-python.svg" alt="Python">
+            <img class="project-icon" src="../assets/icons/logo-pygame.png" alt="Pygame">
+            <img class="project-icon" src="../assets/icons/logo-open3d.png" alt="Open3D">
+        </div>
+    </header>
+
+    <div class="project-container">
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Project Overview</h2>
+            <div class="section-content animate-on-scroll">
+                This project explores drone delivery route optimization using advanced pathfinding algorithms and 3D city modeling. Built as an individual research project, it demonstrates how autonomous drones can efficiently navigate complex urban environments while avoiding buildings, restricted areas, and optimizing delivery routes for multiple stops.
+            </div>
+            
+            <div class="tech-stack animate-on-scroll">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Pygame</span>
+                <span class="tech-tag">Open3D</span>
+                <span class="tech-tag">A* Algorithm</span>
+                <span class="tech-tag">Dijkstra Algorithm</span>
+                <span class="tech-tag">3D Modeling</span>
+                <span class="tech-tag">TSP Optimization</span>
+            </div>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Learning Objectives</h2>
+            <div class="section-content animate-on-scroll">
+                This project was developed to master advanced algorithmic concepts, 3D data processing, and real-time visualization techniques. It serves as a foundation for understanding autonomous navigation systems and route optimization in complex environments.
+            </div>
+            
+            <ul class="feature-list">
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Pathfinding Algorithms</div>
+                    <div class="feature-description">Implement and compare Dijkstra's and A* algorithms for optimal route finding.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">3D Data Processing</div>
+                    <div class="feature-description">Process real-world 3D city models and convert them to navigable point clouds.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Route Optimization</div>
+                    <div class="feature-description">Solve Traveling Salesman Problem variations for multi-stop delivery optimization.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Real-time Visualization</div>
+                    <div class="feature-description">Create interactive visualizations using Pygame and Open3D for algorithm demonstration.</div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Project Components</h2>
+            <ul class="feature-list">
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Algorithm Demonstration (main_lab.py)</div>
+                    <div class="feature-description">Interactive visualization of Dijkstra and A* pathfinding algorithms with step-by-step exploration and cost comparison.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">3D City Navigation (drone.py)</div>
+                    <div class="feature-description">Real Paris 3D model navigation with altitude-based constraints and building avoidance.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Multi-Point Delivery (drone_delivery.py)</div>
+                    <div class="feature-description">Interactive delivery route planning with permutation optimization and drone vs. ground vehicle comparison.</div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Key Features</h2>
+            <ul class="feature-list">
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Interactive Algorithm Visualization</div>
+                    <div class="feature-description">Real-time visualization of pathfinding algorithms with obstacle creation and speed control.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">3D Urban Navigation</div>
+                    <div class="feature-description">Navigate through realistic 3D city models with building height constraints and aerial pathfinding.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Route Optimization Engine</div>
+                    <div class="feature-description">Advanced TSP solver for optimal multi-stop delivery route calculation.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Comparative Analysis</div>
+                    <div class="feature-description">Side-by-side comparison of drone delivery efficiency versus ground-based transportation.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Real-World Data Integration</div>
+                    <div class="feature-description">Uses actual Paris building data and terrain elevation for realistic simulation scenarios.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Altitude-Based Constraints</div>
+                    <div class="feature-description">Dynamic flight path planning considering building heights and no-fly zones.</div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Controls & Usage</h2>
+            <div class="workflow-steps">
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">🎯 Algorithm Demo</h3>
+                        <p class="step-description">Mouse click to create obstacles, D for Dijkstra, A for A*, R to reset</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">🌆 3D Navigation</h3>
+                        <p class="step-description">Automatic pathfinding between random points in 3D Paris model</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">📦 Delivery Planning</h3>
+                        <p class="step-description">Click to select depot and delivery points, automatic route optimization</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">📊 Analysis</h3>
+                        <p class="step-description">Real-time comparison of algorithms and delivery methods with distance metrics</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Technical Implementation</h2>
+            <div class="section-content animate-on-scroll">
+                The project architecture is built around three core classes: Node (representing navigable points in 3D space), City (managing environment data and algorithms), and Drone (handling altitude constraints and navigation capabilities). The system processes real 3D building data from Paris, converting complex meshes into navigable point clouds while maintaining spatial relationships.
+            </div>
+            
+            <div class="section-content animate-on-scroll">
+                Key technical achievements include implementing optimized A* and Dijkstra algorithms with priority queue management, developing a TSP solver for multi-point route optimization, and creating seamless integration between 2D Pygame visualization and 3D Open3D rendering. The system handles permutation analysis for delivery route optimization and provides comparative analysis between aerial and ground-based navigation.
+            </div>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Research Results</h2>
+            <div class="section-content animate-on-scroll">
+                The project demonstrates that A* algorithm consistently outperforms Dijkstra for drone path planning due to its heuristic approach. Drone delivery achieves significantly shorter routes compared to ground vehicles, especially in dense urban environments. The research shows that 3D navigation constraints have a major impact on optimal route selection, and multi-stop delivery requires sophisticated ordering optimization to achieve true efficiency.
+            </div>
+            
+            <div class="section-content animate-on-scroll">
+                Performance analysis reveals that altitude-based constraints can reduce delivery distances by up to 40% compared to ground-based routing, while the TSP optimization component ensures minimal total travel distance for multi-point deliveries. The visualization system provides clear insights into algorithm behavior and route efficiency metrics.
+            </div>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Project Structure</h2>
+            <div class="section-content animate-on-scroll">
+                <ul class="location-benefits">
+                    <li>📁 <strong>demo/:</strong> Algorithm demonstration and visualization tools</li>
+                    <li>📁 <strong>objects/:</strong> 3D city models and terrain data (Paris dataset)</li>
+                    <li>🐍 <strong>drone.py:</strong> Main 3D navigation and pathfinding engine</li>
+                    <li>🚁 <strong>drone_delivery.py:</strong> Multi-point delivery optimization system</li>
+                    <li>📊 <strong>demo/main_lab.py:</strong> Interactive algorithm demonstration interface</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="cta-buttons animate-on-scroll">
+            <a href="https://github.com/MartinVillette/drone-delivery" class="cta-button primary" target="_blank">View Source Code</a>
+        </div>
+    </div>
+</body>
+</html>

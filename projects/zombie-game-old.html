@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zombie Survival Game - Project</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../assets/css/project.css">
+    <script src="../script.js" defer></script>
+    <script src="../assets/js/project-animations.js" defer></script>
+    <script src="../assets/js/table-of-contents.js" defer></script>
+
+</head>
+<body data-color="#438734">
+    <div class="dynamic-gradient"></div>
+    <div class="cursor-circle" id="cursorCircle"></div>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-close" id="modalClose">×</div>
+        <img src="" alt="" class="modal-image" id="modalImage">
+    </div>
+
+    <a href="../index.html" class="back-button">←</a>
+
+    <header class="project-header">
+        <h1 class="title">Zombie Survival Game</h1>
+        <p class="subtitle">A 2D top-down zombie survival game built with C++ and SDL2. Created as a summer learning project to explore C++ programming, pointer management, and game development fundamentals.</p>
+        
+        <div class="status-container">
+            <div class="status-badge prototype">
+                <div class="status-icon"></div>
+                Prototype
+            </div>
+        </div>  
+        
+        <div class="icon-container">
+            <img class="project-icon" src="../assets/icons/logo-c++.svg" alt="C++">
+            <img class="project-icon" src="../assets/icons/logo-sdl.svg" alt="SDL2">
+        </div>
+    </header>
+
+    <div class="project-container">
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Project Overview</h2>
+            <div class="section-content animate-on-scroll">
+                This zombie survival game was developed during summer holidays as a hands-on learning experience with C++ programming and game development. The project focuses on fundamental concepts like pointer management, object-oriented design, and real-time graphics rendering using the SDL2 library. Players navigate through a procedurally generated world while fighting off intelligent zombies that use pathfinding algorithms to hunt them down.
+            </div>
+            
+            <div class="tech-stack animate-on-scroll">
+                <span class="tech-tag">C++</span>
+                <span class="tech-tag">SDL2</span>
+                <span class="tech-tag">A* Pathfinding</span>
+                <span class="tech-tag">Object-Oriented Design</span>
+                <span class="tech-tag">Game Development</span>
+            </div>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Learning Objectives</h2>
+            <div class="section-content animate-on-scroll">
+                This project served as a stepping stone toward building more complex AI systems. The ultimate goal was to gain sufficient C++ experience to later develop an AI village simulation where multiple AI agents (villagers) would interact autonomously within a shared environment, each with their own behaviors and decision-making capabilities.
+            </div>
+            
+            <ul class="feature-list">
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">C++ Fundamentals</div>
+                    <div class="feature-description">Master core C++ concepts including classes, inheritance, and memory management.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Pointer Management</div>
+                    <div class="feature-description">Learn proper pointer usage, memory allocation, and avoiding memory leaks in game development.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">SDL2 Graphics</div>
+                    <div class="feature-description">Understand 2D graphics rendering, texture management, and sprite animation systems.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">A* Pathfinding</div>
+                    <div class="feature-description">Implement intelligent enemy behavior using A* pathfinding algorithms.</div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Game Features</h2>
+            <ul class="feature-list">
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Top-Down Survival Gameplay</div>
+                    <div class="feature-description">Navigate through a dangerous world using WASD controls while fighting for survival.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Intelligent Zombie AI</div>
+                    <div class="feature-description">Zombies use pathfinding to hunt the player, with view range and attack mechanics.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Dynamic Lighting System</div>
+                    <div class="feature-description">Real-time lighting effects that follow the player and create atmospheric gameplay.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Shooting Mechanics</div>
+                    <div class="feature-description">Mouse-controlled aiming and shooting with bullet physics and collision detection.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Sprite Animation</div>
+                    <div class="feature-description">Character animations for walking, idle states, and combat actions.</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Procedural Elements</div>
+                    <div class="feature-description">Dynamic zombie spawning and terrain generation for varied gameplay.</div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Controls & Gameplay</h2>
+            <div class="workflow-steps">
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">🎮 Movement</h3>
+                        <p class="step-description">WASD keys for player movement in all directions</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">🔫 Combat</h3>
+                        <p class="step-description">Left mouse button to shoot at zombies</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">🔍 Camera</h3>
+                        <p class="step-description">P to zoom in, M to zoom out for better visibility</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">🏆 Survival</h3>
+                        <p class="step-description">Stay alive as long as possible and rack up your zombie kill count</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Technical Implementation</h2>
+            <div class="section-content animate-on-scroll">
+                The game architecture follows object-oriented principles with a clear inheritance hierarchy. The Human base class is extended by both Player and Zombie classes, promoting code reuse and maintainability. The Window class manages SDL2 rendering and event handling, while the Map class handles world generation and entity management.
+            </div>
+            
+            <div class="section-content animate-on-scroll">
+                Key technical achievements include implementing A* pathfinding for zombie navigation, dynamic lighting effects using SDL2 blend modes, collision detection systems, and efficient memory management with proper pointer usage. The project demonstrates practical application of C++ concepts in a real-time interactive environment.
+            </div>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Future Plans: AI Village</h2>
+            <div class="section-content animate-on-scroll">
+                This zombie game serves as the foundation for a more ambitious project: an AI village simulation. The experience gained from building intelligent zombie behavior, pathfinding systems, and entity management will be applied to create autonomous villagers with complex behaviors, social interactions, and emergent gameplay scenarios.
+            </div>
+            
+            <div class="section-content animate-on-scroll">
+                The planned AI village will feature multiple AI agents (villagers) that autonomously navigate the world, perform tasks, interact with each other, and respond to environmental changes. Each villager will have unique personalities, goals, and decision-making processes, creating a living, breathing virtual community.
+            </div>
+        </section>
+
+        <section class="project-section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Project Structure</h2>
+            <div class="section-content animate-on-scroll">
+                <ul class="location-benefits">
+                    <li>📁 <strong>src/:</strong> Source code files (.cpp implementations)</li>
+                    <li>📁 <strong>include/:</strong> Header files (.h declarations)</li>
+                    <li>📁 <strong>assets/:</strong> Game sprites, textures, and animations</li>
+                    <li>📁 <strong>lib/:</strong> SDL2 libraries and dependencies</li>
+                    <li>⚙️ <strong>Makefile:</strong> Build configuration for compilation</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="cta-buttons animate-on-scroll">
+            <a href="https://github.com/MartinVillette/Zombie_Game" class="cta-button primary" target="_blank">View Source Code</a>
+        </div>
+    </div>
+</body>
+</html>

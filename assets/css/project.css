@@ -1,0 +1,503 @@
+/* Add scroll animation base styles */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fix the stagger animation delays syntax */
+.animate-on-scroll:nth-child(1) { 
+    transition-delay: opacity 0.1s, 
+        transform 0.1s; 
+}
+.animate-on-scroll:nth-child(2) { 
+    transition-delay: opacity 0.2s,
+        transform 0.2s; 
+}
+.animate-on-scroll:nth-child(3) { 
+    transition-delay: opacity 0.3s,
+    transform 0.3s; 
+}
+.animate-on-scroll:nth-child(4) { 
+    transition-delay: opacity 0.4s,
+    transform 0.5s; 
+}
+.animate-on-scroll:nth-child(5) { 
+    transition-delay: opacity 0.5s,
+    transform 0.5s;  
+}
+.animate-on-scroll:nth-child(6) { 
+    transition-delay: opacity 0.6s,
+    transform 0.6s;  
+}
+.animate-on-scroll:nth-child(5) { 
+    transition-delay: opacity 0.7s,
+    transform 0.7s;  
+}
+
+/* Status badges */
+.status-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.8s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.status-badge.in-progress {
+    background-color: rgba(255, 193, 7, 0.2);
+    border: 1px solid rgba(255, 193, 7, 0.4);
+    color: #856404;
+}
+
+.status-badge.in-progress:hover {
+    background-color: rgba(255, 193, 7, 0.3);
+    transform: scale(1.05);
+}
+
+.status-badge.beta {
+    background-color: rgba(13, 110, 253, 0.2);
+    border: 1px solid rgba(13, 110, 253, 0.4);
+    color: #084298;
+}
+
+.status-badge.beta:hover {
+    background-color: rgba(13, 110, 253, 0.3);
+    transform: scale(1.05);
+}
+
+.status-badge.completed {
+    background-color: rgba(25, 135, 84, 0.2);
+    border: 1px solid rgba(25, 135, 84, 0.4);
+    color: #0f5132;
+}
+
+.status-badge.completed:hover {
+    background-color: rgba(25, 135, 84, 0.3);
+    transform: scale(1.05);
+}
+
+.status-badge.prototype {
+    background-color: rgba(220, 53, 69, 0.2);
+    border: 1px solid rgba(220, 53, 69, 0.4);
+    color: #842029;
+}
+
+.status-badge.prototype:hover {
+    background-color: rgba(220, 53, 69, 0.3);
+    transform: scale(1.05);
+}
+
+.status-badge.concept {
+    background-color: rgba(108, 117, 125, 0.2);
+    border: 1px solid rgba(108, 117, 125, 0.4);
+    color: #495057;
+}
+
+.status-badge.concept:hover {
+    background-color: rgba(108, 117, 125, 0.3);
+    transform: scale(1.05);
+}
+
+.status-icon {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.status-badge.in-progress .status-icon {
+    background-color: #ffc107;
+    animation: pulse 2s infinite;
+}
+
+.status-badge.beta .status-icon {
+    background-color: #0d6efd;
+}
+
+.status-badge.completed .status-icon {
+    background-color: #198754;
+}
+
+.status-badge.prototype .status-icon {
+    background-color: #dc3545;
+}
+
+.status-badge.concept .status-icon {
+    background-color: #6c757d;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+
+/* Project page specific styles */
+.project-header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 80px 20px 60px;
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-header .title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.8s ease forwards;
+    animation-delay: 0.2s;
+    text-align: center;
+    max-width: 600px;
+}
+
+.project-header .subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.8s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.project-header .icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.8s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.project-header .project-icon {
+    width: auto;
+    height: 20px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.project-header .project-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Keyframes for initial header animation */
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container for project content */
+.project-container {
+    max-width: 800px;
+    min-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+    width:60%;
+}
+
+/* Content sections */
+.section {
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.section:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.section-content {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Image gallery */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Modal Styles */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    cursor: pointer;
+}
+
+.image-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-image {
+    max-width: 80%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.image-modal.active .modal-image {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* Feature list */
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-item {
+    padding: 10px 0;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.feature-title, .step-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.feature-description, .step-description {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Workflow steps */
+.workflow-steps {
+    margin: 20px 0;
+}
+
+.step-content {
+    padding: 15px 0;
+}
+
+/* Tech stack */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.tech-tag {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    padding: 8px 15px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+}
+
+/* Call to action buttons */
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.cta-button {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cta-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button.primary {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.cta-button.primary:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+
+
+.location-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.location-benefits li {
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #555;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .project-header {
+        padding: 60px 15px 40px;
+    }
+    
+    .project-header .title {
+        font-size: 24px;
+    }
+    
+    .project-container {
+        padding: 0 15px;
+        width: 100%;
+        min-width: 0;
+    }
+    
+    .section {
+        padding: 20px;
+    }
+    
+    .image-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+    }
+    
+    .back-button {
+        top: 20px;
+        left: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .status-container {
+        flex-wrap: wrap;
+    }
+}
