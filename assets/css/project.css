@@ -249,6 +249,15 @@
         box-shadow 0.3s ease;
 }
 
+.section-hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.5s ease,
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
 .section:hover {
     background-color: rgba(255, 255, 255, 0.5);
     transform: translateY(-2px);
@@ -412,8 +421,8 @@
 /* Call to action buttons */
 .cta-buttons {
     display: flex;
+    justify-content: center;
     gap: 15px;
-    margin-top: 30px;
     flex-wrap: wrap;
 }
 
@@ -422,7 +431,7 @@
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 15px;
     padding: 12px 25px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     color: #333;
     text-decoration: none;
@@ -440,7 +449,6 @@
 
 .cta-button.primary {
     background-color: rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .cta-button.primary:hover {
@@ -483,10 +491,6 @@
     
     .image-gallery {
         grid-template-columns: 1fr;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
     }
     
     .back-button {

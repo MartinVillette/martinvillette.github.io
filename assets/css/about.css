@@ -48,7 +48,7 @@
     animation-delay: 0.6s;
 }
 
-/* Sections */
+/* Content sections */
 .section {
     background-color: rgba(255, 255, 255, 0);
     border-radius: 20px;
@@ -58,6 +58,15 @@
     transition: background-color 0.3s ease,
         transform 0.3s ease,
         box-shadow 0.3s ease;
+}
+
+.section-hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.5s ease,
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
 }
 
 .section:hover {

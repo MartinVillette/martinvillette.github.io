@@ -25,14 +25,8 @@ body {
     overflow-x: hidden;
     position: relative;
     transition: background-color 0.5s ease;
-    background: linear-gradient(45deg, 
-        rgba(168, 230, 207, 0.3), 
-        rgba(168, 230, 207, 0.1), 
-        rgba(168, 230, 207, 0.2), 
-        rgba(168, 230, 207, 0.4));
-    background-size: 400% 400%;
-    animation: gradientShift 20s ease-in-out infinite;
     animation: pageLoad 0.8s ease forwards;
+    background: none; /* Remove the existing background */
 }
 
 /* ==========================================================================
@@ -123,14 +117,25 @@ body {
     }
 }
 
+@keyframes headerFadeInAndBreathe {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate(var(--hx), var(--hy));
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translate(var(--hx), var(--hy));
+    }
+}
+
 /* ==========================================================================
    CURSOR STYLES
    ========================================================================== */
 
 .cursor-circle {
     position: fixed;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background-color: rgba(168, 230, 207, 0.5);
     pointer-events: none;
@@ -147,40 +152,11 @@ body {
     will-change: transform;
 }
 
-.cursor-circle.expanded {
-    width: 300px;
-    height: 200px;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.cursor-circle.expanded .cursor-image {
-    opacity: 1;
-}
-
 /* ==========================================================================
    LAYOUT CONTAINERS
    ========================================================================== */
 
 
-/* Add a new full-screen dynamic gradient layer */
-.dynamic-gradient {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -3;
-    /* Use multiple pastel stops for a richer color mix */
-    background: linear-gradient(45deg, 
-        rgba(168,230,207,0.3), 
-        rgba(255,182,193,0.2), 
-        rgba(173,216,230,0.2), 
-        rgba(168,230,207,0.3));
-    background-size: 600% 600%;
-    animation: dynamicGradient 60s ease-in-out infinite;
-}
 
 /* ==========================================================================
    PROJECT BUTTONS
@@ -196,14 +172,14 @@ body {
 .project-buttons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    /* gap: 10px; */
     width: max-content;
 }
 
 .project-button {
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid rgba(255, 255, 255, 0);
-    padding: 10px 10px;
+    padding: 12px 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -242,12 +218,14 @@ body {
     font-weight: 600;
     margin-right: 20px;
     color: #333;
+    transition: transform 0.3s ease;
 }
 
 .project-date {
     font-size: 10px;
     color: #7f8c8d;
     margin: 0;
+    transition: transform 0.3s ease;
 }
 
 .project-icon {
@@ -316,17 +294,22 @@ body {
     --hx: 0px;
     --hy: 0px;
     z-index: 2;
-    transform: translate(-50%, -50%) translate(var(--hx), var(--hy));
-    animation: breatheHeader 5s ease-in-out infinite;
     gap: 5px;
     
-    /* Initial animation state */
+    /* Initial state - hidden and positioned */
     opacity: 0;
+    transform: translate(-50%, -50%) translate(var(--hx), var(--hy));
     
     /* Smooth transition for position changes */
     transition: transform 0.3s ease, left 0.3s ease;
+    
+    /* Single animation that handles both fade in and breathing */
+    animation: headerFadeInAndBreathe 1s ease forwards;
 }
 
+.header.loaded {
+    animation: headerFadeInAndBreathe 1s ease forwards, breatheHeader 5s ease-in-out infinite 1s;
+}
 
 /* Adaptive positioning when header would overlap with portfolio */
 @media (max-width: 1200px) {
@@ -354,10 +337,6 @@ body {
         padding: 0 20px;
         z-index: 10;
         width: 100%;
-    }
-    
-    .header {
-        animation: none; /* Remove breathing animation on mobile */
     }
 }
 
@@ -536,14 +515,6 @@ body {
 }
 
 
-
-/* Header initial fade in */
-.header {
-    animation: headerFadeIn 1s ease forwards, breatheHeader 5s ease-in-out infinite 1s;
-}
-
-
-
 /* Enhance hover animations */
 .project-button:hover .project-title {
     transform: translateX(3px);
@@ -659,3 +630,39 @@ body {
         justify-content: center;
     }
 }
+
+/* Add these styles for the bubble background */
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.color-bubble {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(30px);
+    will-change: transform;
+    mix-blend-mode: multiply;
+    opacity: 1;
+}
+
+.grain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    pointer-events: none;
+    background-image: url('assets/css/noise.svg');
+}
+
+
+/* Keep the rest of your CSS unchanged */

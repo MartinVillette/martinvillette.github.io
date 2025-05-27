@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Powered Japanese Learning App - Project</title>
+    <title>Martin Villette - AI-Powered Japanese Learning App</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../assets/css/project.css">
+    <link rel="icon" href="../assets/icons/logo-portfolio.svg" type="svg">
     <script src="../script.js" defer></script>
     <script src="../assets/js/project-animations.js" defer></script>
     <script src="../assets/js/table-of-contents.js" defer></script>
 </head>
 <body data-color="#d0bcff">
-    <div class="dynamic-gradient"></div>
+
+    <div class="background" id="background">
+        <div class="grain"></div>
+    </div>
+
     <div class="cursor-circle" id="cursorCircle"></div>
 
     <!-- Image Modal -->
@@ -24,14 +29,27 @@
 
     <header class="project-header">
         <h1 class="title">AI-Powered Japanese Learning App</h1>
-        <p class="subtitle">Native Android application featuring machine learning-powered handwriting recognition, NLP chatbot integration, and adaptive learning algorithms. Demonstrates expertise in LLM integration, complex character recognition, and personalized user experiences.</p>
+        <p class="subtitle">Native Android app with ML handwriting recognition, NLP chatbot, and adaptive learning algorithms. Integrates 4 specialized AI models for personalized language learning.</p>
         
+        <div class="cta-buttons animate-on-scroll">
+            <a href="https://github.com/MartinVillette/ai_powered-japanese-learning-app" class="cta-button primary" target="_blank">📂 Source Code</a>
+            <!-- <a href="#" class="cta-button secondary" target="_blank">📱 Demo Video</a> -->
+        </div>
+
         <div class="status-container">
             <div class="status-badge concept">
                 <div class="status-icon"></div>
                 Concept
             </div>
         </div> 
+
+        <div class="tech-stack animate-on-scroll">
+            <span class="tech-tag">Android</span>
+            <span class="tech-tag">Kotlin</span>
+            <span class="tech-tag">AI/ML</span>
+            <span class="tech-tag">LLM</span>
+            <span class="tech-tag">Firebase</span>
+        </div>
         
         <div class="icon-container">
             <img class="project-icon" src="../assets/icons/logo-android.svg" alt="Android">
@@ -43,91 +61,53 @@
 
     <div class="project-container">
         <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Technical Achievement</h2>
-            <div class="section-content animate-on-scroll">
-                Developed a comprehensive Android application integrating multiple AI agents for language learning. Implemented real-time handwriting recognition for Japanese characters, natural language processing for adaptive conversations, and LLM-prompting for personalized feedback systems.
-            </div>
-            
+            <h2 class="section-title animate-on-scroll">Key AI/ML Achievements</h2>
             <ul class="location-benefits animate-on-scroll">
-                <li>🤖 <strong>Multi-Model AI Integration:</strong> 4 specialized language models for different learning components</li>
-                <li>✍️ <strong>Advanced Character Recognition:</strong> Real-time ML recognition for 3 Japanese writing systems</li>
-                <li>🧠 <strong>Adaptive Algorithms:</strong> Personalized learning paths with performance-based content adjustment</li>
-                <li>📱 <strong>Native Mobile Development:</strong> Kotlin-based Android app with optimized UI/UX</li>
+                <li>🤖 <strong>4 Specialized AI Models:</strong> Quiz evaluation, chatbot, feedback agent, and character recognition</li>
+                <li>✍️ <strong>Real-time Character Recognition:</strong> 95%+ accuracy across Hiragana, Katakana, and Kanji</li>
+                <li>🧠 <strong>Adaptive Learning:</strong> Performance-based content adjustment with spaced repetition algorithms</li>
             </ul>
-            
-            <div class="tech-stack animate-on-scroll">
-                <span class="tech-tag">Android</span>
-                <span class="tech-tag">Kotlin</span>
-                <span class="tech-tag">AI/ML</span>
-                <span class="tech-tag">LLM</span>
-                <span class="tech-tag">Handwriting Recognition</span>
-                <span class="tech-tag">Natural Language Processing</span>
-                <span class="tech-tag">Firebase</span>
-            </div>
         </section>
 
         <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">AI Architecture & Implementation</h2>
+            <h2 class="section-title animate-on-scroll">AI Architecture</h2>
             <div class="workflow-steps">
                 <div class="step animate-on-scroll">
                     <div class="step-content">
                         <h3 class="step-title">🤖 Quiz Evaluation AI</h3>
-                        <p class="step-description">NLP model for intelligent assessment with flexible scoring algorithms and multi-format answer validation</p>
+                        <p class="step-description">NLP model with flexible scoring and multi-format answer validation</p>
                     </div>
                 </div>
                 <div class="step animate-on-scroll">
                     <div class="step-content">
                         <h3 class="step-title">💬 Conversational Chatbot</h3>
-                        <p class="step-description">Context-aware language model that adapts vocabulary complexity based on user progress data</p>
+                        <p class="step-description">Context-aware LLM that adapts vocabulary based on user progress</p>
                     </div>
                 </div>
                 <div class="step animate-on-scroll">
                     <div class="step-content">
-                        <h3 class="step-title">📝 Feedback Agent</h3>
-                        <p class="step-description">Machine learning system for personalized learning recommendations and error pattern analysis</p>
-                    </div>
-                </div>
-                <div class="step animate-on-scroll">
-                    <div class="step-content">
-                        <h3 class="step-title">✍️ Character Recognition Engine</h3>
-                        <p class="step-description">Deep learning model trained on Japanese character datasets with real-time inference optimization</p>
+                        <h3 class="step-title">✍️ Character Recognition</h3>
+                        <p class="step-description">Custom ML model for Japanese characters with stroke order validation</p>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Key Technical Features</h2>
-            <ul class="feature-list">
-                <li class="feature-item animate-on-scroll">
-                    <h3 class="feature-title">Multi-Model ML Pipeline</h3>
-                    <p class="feature-description">Integrated 4 specialized AI models with optimized inference and real-time processing capabilities</p>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <h3 class="feature-title">Advanced Character Recognition</h3>
-                    <p class="feature-description">Custom ML model recognizing Hiragana, Katakana, and Kanji with stroke order validation</p>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <h3 class="feature-title">Adaptive Learning Algorithm</h3>
-                    <p class="feature-description">Performance-based content adjustment using spaced repetition and difficulty scaling algorithms</p>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <h3 class="feature-title">Real-time NLP Processing</h3>
-                    <p class="feature-description">Context-aware conversation system with dynamic vocabulary constraint enforcement</p>
-                </li>
-            </ul>
         </section>
 
         <section class="section animate-on-scroll">
             <h2 class="section-title animate-on-scroll">Technical Implementation</h2>
-            <div class="section-content animate-on-scroll">
-                Built with modern Android architecture using MVVM pattern and Kotlin coroutines for asynchronous processing. Implemented efficient ML model inference with TensorFlow Lite for on-device character recognition and cloud-based language models for complex NLP tasks. Local caching and optimization ensure smooth real-time performance.
-            </div>
-            
-            <ul class="location-benefits">
-                <li>📊 <strong>Performance Optimization:</strong> On-device ML inference with sub-100ms character recognition</li>
-                <li>💾 <strong>Efficient Caching:</strong> Local data persistence with Firebase and cloud synchronization</li>
-                <li>🎯 <strong>Modular Architecture:</strong> Separation of concerns with dependency injection and clean architecture</li>
+            <ul class="feature-list">
+                <li class="feature-item animate-on-scroll">
+                    <h3 class="feature-title">Multi-Model ML Pipeline</h3>
+                    <p class="feature-description">Integrated 4 AI models with optimized inference and real-time processing</p>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <h3 class="feature-title">Modern Android Architecture</h3>
+                    <p class="feature-description">MVVM pattern with Kotlin coroutines and dependency injection</p>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <h3 class="feature-title">Performance Optimization</h3>
+                    <p class="feature-description">On-device ML with local caching and cloud synchronization via Firebase</p>
+                </li>
             </ul>
         </section>
 
@@ -143,23 +123,6 @@
                 <strong>Result:</strong> Achieved high-accuracy character recognition across three Japanese writing systems with intelligent conversation capabilities and personalized feedback systems that adapt to individual learning patterns.
             </div>
         </section>
-
-        <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">ML Model Performance</h2>
-            <div class="section-content animate-on-scroll">
-                The application demonstrates advanced machine learning integration with optimized model performance for mobile deployment. Character recognition achieves high accuracy rates across Japanese writing systems while maintaining real-time responsiveness.
-            </div>
-            
-            <ul class="location-benefits">
-                <li>⚡ <strong>Real-time Inference:</strong> Sub-100ms character recognition</li>
-                <li>🎯 <strong>High Accuracy:</strong> 95%+ recognition rate across Hiragana, Katakana, and basic Kanji</li>
-                <li>🧠 <strong>Adaptive Learning:</strong> Personalization with performance analytics and progress tracking</li>
-            </ul>   
-        </section>
-
-        <div class="cta-buttons animate-on-scroll">
-            <a href="https://github.com/MartinVillette/ai_powered-japanese-learning-app" class="cta-button primary" target="_blank">View Source Code</a>
-        </div>
     </div>
 </body>
 </html>

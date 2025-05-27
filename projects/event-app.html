@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Planning & Coordination App - Project</title>
+    <title>Martin Villette - Event Planning & Coordination App</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../assets/css/project.css">
+    <link rel="icon" href="../assets/icons/logo-portfolio.svg" type="svg">
     <script src="../script.js" defer></script>
     <script src="../assets/js/project-animations.js" defer></script>
     <script src="../assets/js/table-of-contents.js" defer></script>
 </head>
 <body data-color="#2196F3">
-    <div class="dynamic-gradient"></div>
+    <div class="background" id="background">
+        <div class="grain"></div>
+    </div>
+
     <div class="cursor-circle" id="cursorCircle"></div>
 
     <!-- Image Modal -->
@@ -24,14 +28,28 @@
 
     <header class="project-header">
         <h1 class="title">Event Planning & Coordination App</h1>
-        <p class="subtitle">Native Android application built with Kotlin and Firebase that streamlines event organization. Features real-time collaboration, expense tracking, photo sharing, and comprehensive group coordination in a single platform.</p>
+        <p class="subtitle">Native Android app with real-time collaboration, expense tracking, and group coordination. Built with Kotlin, Firebase, and modern Android architecture patterns.</p>
         
+        <div class="cta-buttons animate-on-scroll">
+            <a href="https://github.com/MartinVillette/event-planning-and-coordination-app" class="cta-button primary" target="_blank">📂 Source Code</a>
+            <!-- <a href="#" class="cta-button secondary" target="_blank">📱 Demo Video</a> -->
+        </div>
+
         <div class="status-container">
             <div class="status-badge prototype">
                 <div class="status-icon"></div>
                 Prototype
             </div>
         </div> 
+
+        <div class="tech-stack animate-on-scroll">
+            <span class="tech-tag">Android</span>
+            <span class="tech-tag">Kotlin</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">MVVM</span>
+            <span class="tech-tag">Firestore</span>
+            <span class="tech-tag">Real-time Sync</span>
+        </div>
 
         <div class="icon-container">
             <img class="project-icon" src="../assets/icons/logo-android.svg" alt="Android">
@@ -42,27 +60,13 @@
 
     <div class="project-container">
         <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Technical Achievement</h2>
-            <div class="section-content animate-on-scroll">
-                Developed a comprehensive Android application using modern development practices with Kotlin and Firebase ecosystem. Implemented real-time synchronization, offline capabilities, and complex data relationships to solve multi-faceted event coordination challenges.
-            </div>
-            
+            <h2 class="section-title animate-on-scroll">Modern Android Development</h2>
             <ul class="location-benefits animate-on-scroll">
-                <li>📱 <strong>Native Android Development:</strong> MVVM architecture with Android Jetpack components</li>
+                <li>📱 <strong>MVVM Architecture:</strong> Android Jetpack components with Material Design</li>
                 <li>🔄 <strong>Real-time Synchronization:</strong> Firebase Firestore with offline-first data handling</li>
-                <li>🔐 <strong>Security Implementation:</strong> Firebase Auth with end-to-end encryption for sensitive data</li>
-                <li>⚡ <strong>Performance Optimization:</strong> Local caching and efficient data loading strategies</li>
+                <li>🔐 <strong>Security & Auth:</strong> Firebase Auth with end-to-end encryption implementation</li>
+                <li>⚡ <strong>Performance Optimized:</strong> Local caching and efficient query strategies</li>
             </ul>
-            
-            <div class="tech-stack animate-on-scroll">
-                <span class="tech-tag">Android</span>
-                <span class="tech-tag">Kotlin</span>
-                <span class="tech-tag">Firebase</span>
-                <span class="tech-tag">Firestore</span>
-                <span class="tech-tag">Cloud Functions</span>
-                <span class="tech-tag">Firebase Auth</span>
-                <span class="tech-tag">Firebase Storage</span>
-            </div>
         </section>
 
         <section class="section animate-on-scroll">
@@ -71,48 +75,38 @@
                 <div class="step animate-on-scroll">
                     <div class="step-content">
                         <h3 class="step-title">📱 Frontend Architecture</h3>
-                        <p class="step-description">MVVM pattern with Android Jetpack components, Material Design implementation, and responsive UI for multiple screen sizes</p>
+                        <p class="step-description">MVVM pattern with Android Jetpack and responsive Material Design UI</p>
                     </div>
                 </div>
                 <div class="step animate-on-scroll">
                     <div class="step-content">
-                        <h3 class="step-title">🔥 Backend Integration</h3>
-                        <p class="step-description">Firebase ecosystem with Firestore real-time database, Cloud Functions for server-side logic, and Firebase Auth for user management</p>
+                        <h3 class="step-title">🔥 Firebase Integration</h3>
+                        <p class="step-description">Firestore real-time database, Cloud Functions, and Firebase Auth</p>
                     </div>
                 </div>
                 <div class="step animate-on-scroll">
                     <div class="step-content">
                         <h3 class="step-title">💾 Data Management</h3>
-                        <p class="step-description">Complex data relationships with real-time synchronization, local caching for offline functionality, and optimized query strategies</p>
-                    </div>
-                </div>
-                <div class="step animate-on-scroll">
-                    <div class="step-content">
-                        <h3 class="step-title">🔔 Real-time Features</h3>
-                        <p class="step-description">Firebase Cloud Messaging for push notifications, real-time chat implementation, and live expense tracking updates</p>
+                        <p class="step-description">Complex relationships with real-time sync and offline functionality</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Key Technical Features</h2>
+            <h2 class="section-title animate-on-scroll">Key Features Implemented</h2>
             <ul class="feature-list">
                 <li class="feature-item animate-on-scroll">
                     <div class="feature-title">Real-time Collaboration System</div>
-                    <div class="feature-description">Multi-user real-time updates with conflict resolution, live chat functionality, and synchronized state management</div>
+                    <div class="feature-description">Multi-user updates with conflict resolution and synchronized state management</div>
                 </li>
                 <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Complex Data Relationships</div>
-                    <div class="feature-description">User management, event hierarchies, expense tracking with automatic calculations, and friend network implementation</div>
+                    <div class="feature-title">Expense Tracking Algorithm</div>
+                    <div class="feature-description">Automated calculations with split optimization and settlement recommendations</div>
                 </li>
                 <li class="feature-item animate-on-scroll">
                     <div class="feature-title">Offline-First Architecture</div>
-                    <div class="feature-description">Local data caching, queue-based sync when connection returns, and seamless offline/online transitions</div>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Media Management System</div>
-                    <div class="feature-description">Firebase Storage integration for photos and files, optimized image compression, and batch upload capabilities</div>
+                    <div class="feature-description">Local caching with queue-based sync and seamless online/offline transitions</div>
                 </li>
             </ul>
         </section>
@@ -126,35 +120,9 @@
                 <strong>Solution:</strong> Developed a unified platform with real-time collaboration features, automated expense calculations, contribution tracking, and integrated communication systems.
             </div>
             <div class="section-content animate-on-scroll">
-                <strong>Technical Innovation:</strong> Implemented complex state synchronization across multiple users with conflict resolution, offline-first data architecture, and optimized Firebase queries for real-time performance.
+                <strong>Result:</strong> Implemented complex state synchronization across multiple users with conflict resolution, offline-first data architecture, and optimized Firebase queries for real-time performance.
             </div>
         </section>
-
-        <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Core Features Implemented</h2>
-            <ul class="feature-list">
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Event Management Engine</div>
-                    <div class="feature-description">Complete CRUD operations with real-time updates, participant management, and automated notification systems</div>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Expense Tracking Algorithm</div>
-                    <div class="feature-description">Automated expense calculation with split optimization, currency support, and settlement recommendations</div>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Real-time Communication</div>
-                    <div class="feature-description">Group chat with message persistence, read receipts, and push notification integration</div>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Security & Privacy Framework</div>
-                    <div class="feature-description">End-to-end encryption implementation, role-based access control, and GDPR-compliant data handling</div>
-                </li>
-            </ul>
-        </section>
-
-        <div class="cta-buttons animate-on-scroll">
-            <a href="https://github.com/MartinVillette/event-planning-and-coordination-app" class="cta-button primary" target="_blank">View Source Code</a>
-        </div>
     </div>
 </body>
 </html>

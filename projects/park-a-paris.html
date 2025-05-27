@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Park à Paris - Project</title>
+    <title>Martin Villette - Park à Paris</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../assets/css/project.css">
+    <link rel="icon" href="../assets/icons/logo-portfolio.svg" type="svg">
     <script src="../script.js" defer></script>
     <script src="../assets/js/project-animations.js" defer></script>
     <script src="../assets/js/table-of-contents.js" defer></script>
 
 </head>
 <body data-color="#266bb7">
-    <div class="dynamic-gradient"></div>
+    <div class="background" id="background">
+        <div class="grain"></div>
+    </div>
+
     <div class="cursor-circle" id="cursorCircle"></div>
 
     <!-- Image Modal -->
@@ -23,11 +27,16 @@
 
     <a href="../index.html" class="back-button">←</a>
 
-    <header class="project-header">
+    <header class="project-header ">
         <h1 class="title">Park à Paris</h1>
-        <p class="subtitle">Full-stack parking reservation platform with payment processing, real-time availability management, and multi-language support. Currently in production serving customers in Paris with secure Stripe integration and comprehensive business logic.</p>
+        <p class="subtitle">Production e-commerce platform for parking reservations with Stripe payments, real-time availability, and multi-language support. Live business generating revenue in Paris.</p>
         
-        <div class="status-container">
+        <div class="cta-buttons">
+            <a href="https://www.parkaparis.com" class="cta-button primary" target="_blank">🚀 Live Platform</a>
+            <a href="#" class="cta-button secondary" target="_blank">📂 Source Code</a>
+        </div>
+
+        <div class="status-container animate-on-scroll" >
             <div class="status-badge in-progress">
                 <div class="status-icon"></div>
                 Production
@@ -38,6 +47,15 @@
             </div>
         </div>  
 
+        <div class="tech-stack animate-on-scroll">
+            <span class="tech-tag">React Native</span>
+            <span class="tech-tag">Expo</span>
+            <span class="tech-tag">Django</span>
+            <span class="tech-tag">Stripe API</span>
+            <span class="tech-tag">REST API</span>
+            <span class="tech-tag">i18n</span>
+        </div>
+
         <div class="icon-container">
             <img class="project-icon" src="../assets/icons/logo-expo.svg" alt="Expo">
             <img class="project-icon" src="../assets/icons/logo-django.svg" alt="Django">
@@ -47,27 +65,13 @@
 
     <div class="project-container">
         <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Technical Achievement</h2>
-            <div class="section-content animate-on-scroll">
-                Developed and deployed a complete e-commerce platform for parking reservations with real-time availability management, secure payment processing, and automated business operations. Built with Django backend and modern frontend technologies, serving actual customers in production environment.
-            </div>
-            
+            <h2 class="section-title animate-on-scroll">Key Achievements</h2>
             <ul class="location-benefits animate-on-scroll">
                 <li>💰 <strong>Live Revenue Generation:</strong> Production platform processing real customer transactions</li>
                 <li>🔐 <strong>Secure Payment Integration:</strong> Full Stripe implementation with webhook handling</li>
-                <li>🌍 <strong>Internationalization:</strong> Multi-language support with Django i18n framework</li>
                 <li>⚡ <strong>Real-time Management:</strong> Dynamic availability tracking and automated booking confirmation</li>
+                <li>🌍 <strong>Multi-language Support:</strong> Django i18n framework with French/English</li>
             </ul>
-            
-            <div class="tech-stack animate-on-scroll">
-                <span class="tech-tag">Django</span>
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Stripe API</span>
-                <span class="tech-tag">PostgreSQL</span>
-                <span class="tech-tag">REST API</span>
-                <span class="tech-tag">i18n</span>
-                <span class="tech-tag">GDPR Compliance</span>
-            </div>
         </section>
 
         <section class="section animate-on-scroll">
@@ -76,61 +80,40 @@
                 <div class="step animate-on-scroll">
                     <div class="step-content">
                         <h3 class="step-title">🏗️ Backend Architecture</h3>
-                        <p class="step-description">Django REST framework with PostgreSQL, automated email systems, and admin interface for business management</p>
+                        <p class="step-description">Django REST framework with PostgreSQL, automated email systems, and admin interface</p>
                     </div>
                 </div>
                 <div class="step animate-on-scroll">
                     <div class="step-content">
                         <h3 class="step-title">💳 Payment Processing</h3>
-                        <p class="step-description">Complete Stripe integration with webhooks, recurring billing support, and secure transaction handling</p>
+                        <p class="step-description">Complete Stripe integration with webhooks and secure transaction handling</p>
                     </div>
                 </div>
                 <div class="step animate-on-scroll">
                     <div class="step-content">
-                        <h3 class="step-title">📱 Responsive Frontend</h3>
-                        <p class="step-description">Mobile-first design with modern web technologies and cross-browser compatibility</p>
-                    </div>
-                </div>
-                <div class="step animate-on-scroll">
-                    <div class="step-content">
-                        <h3 class="step-title">🔒 Legal Compliance</h3>
-                        <p class="step-description">GDPR implementation, privacy policies, terms of service, and data protection measures</p>
+                        <h3 class="step-title">📱 Frontend & UX</h3>
+                        <p class="step-description">Mobile-first responsive design with modern web technologies</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Key Technical Features</h2>
+            <h2 class="section-title animate-on-scroll">Business Impact</h2>
             <ul class="feature-list">
                 <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Real-time Booking Engine</div>
-                    <div class="feature-description">Advanced reservation system with availability tracking, conflict resolution, and automated confirmation</div>
+                    <div class="feature-title">Live Revenue Platform</div>
+                    <div class="feature-description">Production system processing real customer payments in Paris market</div>
                 </li>
                 <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Secure Payment Infrastructure</div>
-                    <div class="feature-description">Stripe integration with webhook handling, payment verification, and automated refund processing</div>
+                    <div class="feature-title">90% Process Automation</div>
+                    <div class="feature-description">Automated booking, payment, and notification workflows</div>
                 </li>
                 <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Multi-language Architecture</div>
-                    <div class="feature-description">Django internationalization framework supporting French and English with dynamic content translation</div>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Business Logic Automation</div>
-                    <div class="feature-description">Automated email notifications, pricing calculations, and reservation management workflows</div>
+                    <div class="feature-title">Scalable Architecture</div>
+                    <div class="feature-description">Built for growth with multi-location and service expansion capabilities</div>
                 </li>
             </ul>
-        </section>
-
-        <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Production Architecture</h2>
-            <div class="section-content animate-on-scroll">
-                Built with scalable Django architecture featuring PostgreSQL database, RESTful API design, and comprehensive admin interface for business operations. Implemented secure payment processing with Stripe webhooks, automated email systems, and real-time availability management.
-            </div>
-            
-            <div class="section-content animate-on-scroll">
-                The platform includes complete legal compliance framework with GDPR implementation, privacy policies, and terms of service. Features responsive design principles, cross-browser compatibility, and mobile-first approach for optimal user experience across all devices.
-            </div>
         </section>
 
         <section class="section animate-on-scroll">
@@ -145,32 +128,6 @@
                 <strong>Result:</strong> Successfully launched production platform serving real customers with secure payment processing, automated operations, and scalable architecture supporting business growth.
             </div>
         </section>
-
-        <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Business Impact</h2>
-            <ul class="feature-list">
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Revenue Generation</div>
-                    <div class="feature-description">Live production platform processing customer payments and generating business revenue</div>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Automated Operations</div>
-                    <div class="feature-description">Reduced manual processes by 90% through automated booking, payment, and notification systems</div>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Scalable Infrastructure</div>
-                    <div class="feature-description">Architecture designed to handle growth with multi-location support and expanded service offerings</div>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Customer Experience</div>
-                    <div class="feature-description">Streamlined booking process with real-time confirmation and multi-language accessibility</div>
-                </li>
-            </ul>
-        </section>
-
-        <div class="cta-buttons animate-on-scroll">
-            <a href="https://www.parkaparis.com" class="cta-button primary" target="_blank">Visit Live Platform</a>
-        </div>
     </div>
 </body>
 </html>

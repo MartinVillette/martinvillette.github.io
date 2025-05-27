@@ -74,8 +74,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!section) return;
             
             if (entry.isIntersecting) {
-                sections.forEach(s => s.link.classList.remove('active'));
+                // Remove active class and section-hover class from all sections
+                sections.forEach(s => {
+                    s.link.classList.remove('active');
+                    s.element.classList.remove('section-hover');
+                });
+                
+                // Add active class to TOC link and section-hover class to section
                 section.link.classList.add('active');
+                section.element.classList.add('section-hover');
             }
         });
     }, observerOptions);

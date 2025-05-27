@@ -3,9 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.project-button');
     const body = document.body;
     const projectImage = document.querySelector('.project-image');
-    const header = document.querySelector('.header'); // Reference to header
-    const name = document.querySelector('#name'); // Reference to name element
-    const primaryButton = document.querySelector('.primary');
+    const header = document.querySelector('.header'); 
+    const name = document.querySelector('#name');
     const background = document.getElementById('background');
 
     // Track mouse position
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let targetColor = { r: 168, g: 230, b: 207 };
     let lastHoveredColor = { r: 168, g: 230, b: 207 }; // Store last hovered color
     let bubbles = []; // Array to store bubble instances
-    let scrollY = 0; // Track scroll position
 
     // Initialize colors
     const colorData = body.getAttribute('data-color');
@@ -35,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         targetColor = newColor;
         currentColor = newColor;
         if (name) name.style.color = `rgba(${newColor.r}, ${newColor.g}, ${newColor.b}, 0.8)`;
-        if (primaryButton) primaryButton.setAttribute('style', `background-color: rgba(${newColor.r}, ${newColor.g}, ${newColor.b}, 0.1)`);
         cursorCircle.style.backgroundColor = `${colorData}80`;
     } else {
         targetColor = { r: 168, g: 230, b: 207 };
@@ -51,8 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Bubble class definition
     class Bubble {
         constructor(baseColor) {
+            // Generate a variation of the base color
             this.baseColor = baseColor;
             this.color = this.generateColorVariation(baseColor);
+            
+            // Target color for smooth transitions
             this.targetColor = { ...this.color };
 
             const documentHeight = Math.max(
@@ -63,16 +63,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.documentElement.offsetHeight
             );
             
+            
             // Randomize properties
-            this.size = this.randomBetween(1000, 2500);
+            this.size = this.randomBetween(500, 1600);
             this.x = this.randomBetween(-this.size/4, window.innerWidth + this.size/4);
             this.y = this.randomBetween(-this.size/4, documentHeight + this.size/4);
             
-            // Parallax properties
-            this.mouseParallaxStrength = this.randomBetween(0.01, 0.03);
-            this.scrollParallaxStrength = this.randomBetween(0.1, 0.4); // Scroll parallax strength
-            this.baseX = this.x;
-            this.baseY = this.y;
+            // Movement properties
+            this.speedX = this.randomBetween(-0.3, 0.3);
+            this.speedY = this.randomBetween(-0.3, 0.3);
+            this.amplitude = this.randomBetween(20, 80);
+            this.period = this.randomBetween(8000, 20000);
+            this.phase = Math.random() * Math.PI * 2;
+            this.startTime = Date.now();
+            
+            // Mouse interaction properties
+            this.avoidRadius = this.size * 0.5;
+            this.avoidStrength = this.randomBetween(0.5, 1.5);
+            this.avoidEasing = this.randomBetween(0.02, 0.07);
+            this.avoidX = 0;
+            this.avoidY = 0;
             
             // Color transition properties
             this.colorTransitionSpeed = this.randomBetween(0.02, 0.05);
@@ -82,10 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.element.className = 'color-bubble';
             this.element.style.width = `${this.size}px`;
             this.element.style.height = `${this.size}px`;
-            this.element.style.position = 'absolute';
-            this.element.style.borderRadius = '50%';
-            this.element.style.pointerEvents = 'none';
-            this.element.style.zIndex = '-1';
             this.updateBubbleColor();
             
             // Add to DOM
@@ -100,7 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     
         generateColorVariation(baseColor) {
-            const variation = 60;
+            // Create variations of the base color
+            const variation = 30;
             return {
                 r: Math.min(255, Math.max(0, baseColor.r + this.randomBetween(-variation, variation))),
                 g: Math.min(255, Math.max(0, baseColor.g + this.randomBetween(-variation, variation))),
@@ -111,39 +118,79 @@ document.addEventListener('DOMContentLoaded', () => {
         updateBubbleColor(newBaseColor) {
             if (newBaseColor) {
                 this.baseColor = newBaseColor;
+                // Set target color for smooth transition
                 this.targetColor = this.generateColorVariation(newBaseColor);
             }
             
+            // Update the element's color (this now happens in the update loop for smooth transition)
             this.element.style.background = `radial-gradient(circle, 
-                rgba(${Math.round(this.color.r)}, ${Math.round(this.color.g)}, ${Math.round(this.color.b)}, 0.6) 0%, 
-                rgba(${Math.round(this.color.r)}, ${Math.round(this.color.g)}, ${Math.round(this.color.b)}, 0) 70%)`;
+                rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0.7) 0%, 
+                rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0) 70%)`;
         }
         
         update() {
+            const now = Date.now();
+            const elapsed = now - this.startTime;
+            
+            // Calculate position with base movement and sinusoidal wave
+            this.x += this.speedX;
+            this.y += this.speedY;
+            
+            // Additional sinusoidal movement
+            const sinOffset = Math.sin(elapsed / this.period * Math.PI * 2 + this.phase) * this.amplitude;
+            const cosOffset = Math.cos(elapsed / this.period * Math.PI * 2 + this.phase) * this.amplitude;
+            
+            // Calculate distance to mouse
+            const dx = this.x + this.size/2 - mouse.x;
+            const dy = this.y + this.size/2 - mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // Apply mouse avoidance if mouse is moving and within range
+            if (mouse.isMoving && distance < this.avoidRadius) {
+                // Calculate repulsion force (stronger when closer)
+                const repulsionForce = (this.avoidRadius - distance) / this.avoidRadius;
+                
+                // Calculate target position to move away from mouse
+                const targetAvoidX = dx * repulsionForce * this.avoidStrength;
+                const targetAvoidY = dy * repulsionForce * this.avoidStrength;
+                
+                // Ease toward target avoidance position
+                this.avoidX += (targetAvoidX - this.avoidX) * this.avoidEasing;
+                this.avoidY += (targetAvoidY - this.avoidY) * this.avoidEasing;
+            } else {
+                // Gradually return to normal position
+                this.avoidX *= 0.95;
+                this.avoidY *= 0.95;
+            }
+            
+            // Check if mouse hasn't moved for a while, reduce avoidance effect
+            const mouseIdleTime = now - mouse.lastMoved;
+            if (mouseIdleTime > 300) {
+                const idleFactor = Math.max(0, 1 - (mouseIdleTime - 300) / 1000);
+                this.avoidX *= idleFactor;
+                this.avoidY *= idleFactor;
+            }
+            
             // Smooth color transition
             this.color.r += (this.targetColor.r - this.color.r) * this.colorTransitionSpeed;
             this.color.g += (this.targetColor.g - this.color.g) * this.colorTransitionSpeed;
             this.color.b += (this.targetColor.b - this.color.b) * this.colorTransitionSpeed;
             
-            // Apply mouse parallax effect
-            const mouseParallaxX = (mouse.x - window.innerWidth / 2) * this.mouseParallaxStrength;
-            const mouseParallaxY = (mouse.y - window.innerHeight / 2) * this.mouseParallaxStrength;
-            
-            // Apply scroll parallax effect
-            const scrollParallaxY = scrollY * this.scrollParallaxStrength;
-            
-            // Combine all transformations
-            const finalX = this.baseX + mouseParallaxX;
-            const finalY = this.baseY + mouseParallaxY - scrollParallaxY;
-            
-            // Update element position with both parallax effects
-            this.element.style.transform = `translate(${finalX}px, ${finalY}px)`;
-            
-            // Update color
+            // Update the element's color for smooth transition
             this.element.style.background = `radial-gradient(circle, 
-                rgba(${Math.round(this.color.r)}, ${Math.round(this.color.g)}, ${Math.round(this.color.b)}, 0.6) 0%, 
+                rgba(${Math.round(this.color.r)}, ${Math.round(this.color.g)}, ${Math.round(this.color.b)}, 0.7) 0%, 
                 rgba(${Math.round(this.color.r)}, ${Math.round(this.color.g)}, ${Math.round(this.color.b)}, 0) 70%)`;
             
+            // Reposition bubbles if they go too far off screen
+            if (this.x < -this.size) this.x = window.innerWidth + this.size/2;
+            if (this.x > window.innerWidth + this.size) this.x = -this.size/2;
+            if (this.y < -this.size) this.y = window.innerHeight + this.size/2;
+            if (this.y > window.innerHeight + this.size) this.y = -this.size/2;
+            
+            // Update element position with all effects combined
+            this.element.style.transform = `translate(${this.x + cosOffset + this.avoidX}px, ${this.y + sinOffset + this.avoidY}px)`;
+            
+            // Continue animation loop
             requestAnimationFrame(() => this.update());
         }
     }
@@ -185,8 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
         img.style.height = height + 'px';
     }
 
-    // Create bubbles based on page type
-    function initBubbles(color) {
+    // Create multiple bubbles
+    function initBubbles(count, color) {
         // Clear existing bubbles
         bubbles.forEach(bubble => {
             if (bubble.element && bubble.element.parentNode) {
@@ -195,14 +242,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         bubbles = [];
-        
-        // Determine bubble count based on page
-        let bubbleCount = 6 + Math.floor(body.offsetHeight / 300);
-        
-        for (let i = 0; i < bubbleCount; i++) {
+        for (let i = 0; i < count; i++) {
             bubbles.push(new Bubble(color));
         }
-        
         return bubbles;
     }
 
@@ -213,43 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function updateBackgroundColor() {
-        currentColor.r += (targetColor.r - currentColor.r) * 0.02;
-        currentColor.g += (targetColor.g - currentColor.g) * 0.02;
-        currentColor.b += (targetColor.b - currentColor.b) * 0.02;
-    
-        // Create subtle but visible color variations
-        const baseColor = `rgba(${Math.round(currentColor.r)}, ${Math.round(currentColor.g)}, ${Math.round(currentColor.b)}`;
-        
-        // Lighter variation
-        const lighterColor = `rgba(${Math.min(255, Math.round(currentColor.r + 40))}, ${Math.min(255, Math.round(currentColor.g + 40))}, ${Math.min(255, Math.round(currentColor.b + 40))}`;
-        
-        // Darker variation
-        const darkerColor = `rgba(${Math.max(0, Math.round(currentColor.r - 30))}, ${Math.max(0, Math.round(currentColor.g - 30))}, ${Math.max(0, Math.round(currentColor.b - 30))}`;
-        
-        // Slightly shifted hue variation
-        const shiftedColor = `rgba(${Math.min(255, Math.max(0, Math.round(currentColor.r + 20)))}, ${Math.min(255, Math.max(0, Math.round(currentColor.g - 10)))}, ${Math.min(255, Math.max(0, Math.round(currentColor.b + 15)))}`;
-    
-        // Simple but effective gradient
-        body.style.background = `linear-gradient(45deg, 
-            ${baseColor}, 0.20), 
-            ${lighterColor}, 0.12), 
-            ${shiftedColor}, 0.15), 
-            ${darkerColor}, 0.18))`;
-        
-        body.style.backgroundSize = '400% 400%';
-        body.style.animation = 'gradientShift 40s ease-in-out infinite';
-    
-        requestAnimationFrame(updateBackgroundColor);
-    }
-    
-    updateBackgroundColor();
-
-    // Track scroll position for parallax
-    window.addEventListener('scroll', () => {
-        scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    });
-
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
@@ -257,8 +262,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update mouse object for bubble interactions
         mouse.x = mouseX;
         mouse.y = mouseY;
+        mouse.isMoving = true;
         mouse.lastMoved = Date.now();
 
+        // Use the working cursor positioning approach
         cursorCircle.style.left = mouseX + 'px';
         cursorCircle.style.top = mouseY + 'px';
 
@@ -280,6 +287,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const headerMoveY = (mouseY - window.innerHeight / 2) * 0.005 + 'px';
             header.style.setProperty('--hx', headerMoveX);
             header.style.setProperty('--hy', headerMoveY);
+        }
+    });
+
+    // For mobile devices
+    document.addEventListener('touchmove', (e) => {
+        if (e.touches && e.touches[0]) {
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY;
+            mouse.isMoving = true;
+            mouse.lastMoved = Date.now();
         }
     });
 
@@ -341,9 +358,13 @@ document.addEventListener('DOMContentLoaded', () => {
             adjustImageSize(projectImage);
         }
     });
-
+    
     // Initialize bubbles with current color
     window.addEventListener('load', () => {
-        bubbles = initBubbles(currentColor);
+        // Create number of bubbles depending on the body height
+        let  bubbleCount = 6 
+        bubbleCount = bubbleCount + Math.floor(body.offsetHeight / 300); // 100px per bubble
+        console.log(bubbleCount);
+        bubbles = initBubbles(bubbleCount, currentColor); // Create 6 bubbles with the current color
     });
 });

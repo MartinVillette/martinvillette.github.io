@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drone Delivery Optimization - Project</title>
+    <title>Martin Villette - Drone Delivery Optimization</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../assets/css/project.css">
+    <link rel="icon" href="../assets/icons/logo-portfolio.svg" type="svg">
     <script src="../script.js" defer></script>
     <script src="../assets/js/project-animations.js" defer></script>
     <script src="../assets/js/table-of-contents.js" defer></script>
 </head>
 <body data-color="#8494a4">
-    <div class="dynamic-gradient"></div>
+    <div class="background" id="background">
+        <div class="grain"></div>
+    </div>
+
     <div class="cursor-circle" id="cursorCircle"></div>
 
     <!-- Image Modal -->
@@ -26,12 +30,25 @@
         <h1 class="title">Drone Delivery Optimization</h1>
         <p class="subtitle">Advanced Python application implementing pathfinding algorithms and 3D city modeling for autonomous drone navigation. Demonstrates route optimization with real-world urban constraints and multi-stop delivery planning.</p>
         
+        <div class="cta-buttons animate-on-scroll">
+            <a href="https://github.com/MartinVillette/drone-delivery" class="cta-button primary" target="_blank">📂 Source Code</a>
+        </div>
+
         <div class="status-container">
             <div class="status-badge completed">
                 <div class="status-icon"></div>
                 Completed
             </div>
         </div> 
+
+        <div class="tech-stack animate-on-scroll">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Pygame</span>
+            <span class="tech-tag">Open3D</span>
+            <span class="tech-tag">A* Algorithm</span>
+            <span class="tech-tag">Dijkstra Algorithm</span>
+            <span class="tech-tag">3D Modeling</span>
+        </div>
         
         <div class="icon-container">
             <img class="project-icon" src="../assets/icons/logo-python.svg" alt="Python">
@@ -42,38 +59,18 @@
 
     <div class="project-container">
         <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Technical Achievement</h2>
-            <div class="section-content animate-on-scroll">
-                Developed a comprehensive autonomous navigation system implementing advanced pathfinding algorithms with 3D city modeling. Built route optimization engine solving complex multi-stop delivery scenarios while processing real-world urban constraints and terrain data.
-            </div>
-            
+            <h2 class="section-title animate-on-scroll">Advanced Pathfinding & 3D Navigation</h2>
             <ul class="location-benefits animate-on-scroll">
                 <li>🧮 <strong>Algorithm Implementation:</strong> A* and Dijkstra pathfinding with priority queue optimization</li>
                 <li>📊 <strong>40% Route Efficiency:</strong> Altitude-based navigation reduces delivery distances vs ground routing</li>
                 <li>🌆 <strong>Real-World Data:</strong> Integrated actual Paris 3D building models and terrain elevation</li>
                 <li>⚡ <strong>TSP Optimization:</strong> Multi-stop delivery route solver with permutation analysis</li>
             </ul>
-            
-            <div class="tech-stack animate-on-scroll">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Pygame</span>
-                <span class="tech-tag">Open3D</span>
-                <span class="tech-tag">A* Algorithm</span>
-                <span class="tech-tag">Dijkstra Algorithm</span>
-                <span class="tech-tag">3D Modeling</span>
-                <span class="tech-tag">TSP Optimization</span>
-            </div>
         </section>
 
         <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Technical Implementation</h2>
+            <h2 class="section-title animate-on-scroll">Technical Architecture</h2>
             <div class="workflow-steps">
-                <div class="step animate-on-scroll">
-                    <div class="step-content">
-                        <h3 class="step-title">🏗️ Object-Oriented Architecture</h3>
-                        <p class="step-description">Node, City, and Drone classes managing 3D navigation and spatial relationships</p>
-                    </div>
-                </div>
                 <div class="step animate-on-scroll">
                     <div class="step-content">
                         <h3 class="step-title">🧮 Advanced Algorithms</h3>
@@ -96,7 +93,7 @@
         </section>
 
         <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Key Technical Features</h2>
+            <h2 class="section-title animate-on-scroll">Key Features Implemented</h2>
             <ul class="feature-list">
                 <li class="feature-item animate-on-scroll">
                     <div class="feature-title">Multi-Algorithm Pathfinding Engine</div>
@@ -110,43 +107,8 @@
                     <div class="feature-title">TSP Route Optimization</div>
                     <div class="feature-description">Advanced solver for multi-stop delivery routes with permutation analysis and efficiency metrics</div>
                 </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Real-World Data Integration</div>
-                    <div class="feature-description">Processing of actual Paris building data with mesh-to-point-cloud conversion pipeline</div>
-                </li>
             </ul>
         </section>
-
-        <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Performance Results</h2>
-            <div class="section-content animate-on-scroll">
-                <strong>Algorithm Analysis:</strong> A* consistently outperforms Dijkstra for drone pathfinding due to heuristic optimization, achieving faster computation with identical optimal results.
-            </div>
-            <div class="section-content animate-on-scroll">
-                <strong>Route Efficiency:</strong> Drone delivery achieves 40% shorter routes compared to ground vehicles in dense urban environments through altitude-based navigation and direct 3D pathfinding.
-            </div>
-            <div class="section-content animate-on-scroll">
-                <strong>Optimization Impact:</strong> TSP solver ensures minimal total travel distance for multi-point deliveries with significant improvement over naive sequential routing approaches.
-            </div>
-        </section>
-
-        <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">System Architecture</h2>
-            <div class="section-content animate-on-scroll">
-                Built with modular design featuring three core components: interactive algorithm demonstration with step-by-step visualization, 3D city navigation engine processing real Paris building data, and multi-point delivery optimization system with comparative analysis capabilities.
-            </div>
-            
-            <ul class="location-benefits animate-on-scroll">
-                <li>🎯 <strong>Algorithm Demo:</strong> Interactive pathfinding visualization with obstacle creation and performance metrics</li>
-                <li>🌆 <strong>3D Navigation:</strong> Real-time navigation through complex urban environments with altitude constraints</li>
-                <li>📦 <strong>Delivery Optimization:</strong> Multi-stop route planning with TSP solver and efficiency comparison</li>
-                <li>📊 <strong>Performance Analytics:</strong> Comprehensive algorithm comparison and route efficiency analysis</li>
-            </ul>
-        </section>
-
-        <div class="cta-buttons animate-on-scroll">
-            <a href="https://github.com/MartinVillette/drone-delivery" class="cta-button primary" target="_blank">View Source Code</a>
-        </div>
     </div>
 </body>
 </html>

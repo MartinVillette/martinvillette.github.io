@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zombie Survival Game - Project</title>
+    <title>Martin Villette - Zombie Survival Games</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../assets/css/project.css">
+    <link rel="icon" href="../assets/icons/logo-portfolio.svg" type="svg">
     <script src="../script.js" defer></script>
     <script src="../assets/js/project-animations.js" defer></script>
     <script src="../assets/js/table-of-contents.js" defer></script>
 
 </head>
 <body data-color="#438734">
-    <div class="dynamic-gradient"></div>
+    <div class="background" id="background">
+        <div class="grain"></div>
+    </div>
+
     <div class="cursor-circle" id="cursorCircle"></div>
 
     <!-- Image Modal -->
@@ -25,14 +29,28 @@
 
     <header class="project-header">
         <h1 class="title">Zombie Survival Game</h1>
-        <p class="subtitle">A 2D top-down zombie survival game built with C++ and SDL2. Demonstrates advanced programming concepts including memory management, AI pathfinding algorithms, and real-time graphics rendering.</p>
+        <p class="subtitle">2D game built from scratch in C++ with SDL2. Features A* pathfinding AI, custom rendering engine, and 60fps performance with zero memory leaks.</p>
         
+        <div class="cta-buttons animate-on-scroll">
+            <a href="https://github.com/MartinVillette/Zombie_Game" class="cta-button primary" target="_blank">📂 Source Code</a>
+            <!-- <a href="#" class="cta-button secondary" target="_blank">🎮 Gameplay Video</a> -->
+        </div>
+
         <div class="status-container">
             <div class="status-badge prototype">
                 <div class="status-icon"></div>
                 Prototype
             </div>
         </div>  
+
+        <div class="tech-stack animate-on-scroll">
+            <span class="tech-tag">C++</span>
+            <span class="tech-tag">SDL2</span>
+            <span class="tech-tag">A* Pathfinding</span>
+            <span class="tech-tag">OOP</span>
+            <span class="tech-tag">Memory Management</span>
+            <span class="tech-tag">Game Engine</span>
+        </div>
         
         <div class="icon-container">
             <img class="project-icon" src="../assets/icons/logo-c++.svg" alt="C++">
@@ -42,76 +60,53 @@
 
     <div class="project-container">
         <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Technical Achievement</h2>
-            <div class="section-content animate-on-scroll">
-                Developed a complete 2D game engine from scratch using C++ and SDL2, implementing advanced programming concepts including AI pathfinding, memory management, and real-time collision detection. The project demonstrates proficiency in low-level programming and game architecture design.
-            </div>
-            
+            <h2 class="section-title animate-on-scroll">Low-Level Programming Skills</h2>
             <ul class="location-benefits animate-on-scroll">
-                <li>🧠 <strong>AI Implementation:</strong> A* pathfinding algorithm for intelligent enemy behavior</li>
-                <li>⚡ <strong>Memory Management:</strong> Efficient pointer usage and resource allocation without memory leaks</li>
-                <li>🎯 <strong>Real-time Systems:</strong> 60fps game loop with collision detection and physics</li>
-                <li>🎨 <strong>Graphics Programming:</strong> Custom rendering pipeline with dynamic lighting effects</li>
+                <li>🧠 <strong>A* Pathfinding AI:</strong> Intelligent zombie navigation with obstacle avoidance</li>
+                <li>⚡ <strong>60fps Performance:</strong> Optimized game loop with efficient collision detection</li>
+                <li>💾 <strong>Zero Memory Leaks:</strong> Proper pointer management and resource allocation</li>
+                <li>🎨 <strong>Custom Rendering Engine:</strong> Built from scratch with dynamic lighting effects</li>
             </ul>
-            
-            <div class="tech-stack animate-on-scroll">
-                <span class="tech-tag">C++</span>
-                <span class="tech-tag">SDL2</span>
-                <span class="tech-tag">A* Pathfinding</span>
-                <span class="tech-tag">Object-Oriented Design</span>
-                <span class="tech-tag">Game Development</span>
-                <span class="tech-tag">Memory Management</span>
+        </section>
+
+        <section class="section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Core Systems Architecture</h2>
+            <div class="workflow-steps">
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">🏗️ OOP Architecture</h3>
+                        <p class="step-description">Inheritance hierarchy with Human base class extended by Player and Zombie classes</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">🧮 AI Pathfinding</h3>
+                        <p class="step-description">A* algorithm implementation with view range detection and target tracking</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">🎨 Graphics Pipeline</h3>
+                        <p class="step-description">Custom SDL2 rendering with sprite animation and dynamic lighting</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="section animate-on-scroll">
             <h2 class="section-title animate-on-scroll">Technical Implementation</h2>
-            <div class="workflow-steps">
-                <div class="step animate-on-scroll">
-                    <div class="step-content">
-                        <h3 class="step-title">🏗️ Object-Oriented Architecture</h3>
-                        <p class="step-description">Inheritance hierarchy with Human base class extended by Player and Zombie classes for code reusability</p>
-                    </div>
-                </div>
-                <div class="step animate-on-scroll">
-                    <div class="step-content">
-                        <h3 class="step-title">🧮 AI Pathfinding System</h3>
-                        <p class="step-description">A* algorithm implementation for intelligent zombie navigation and player tracking</p>
-                    </div>
-                </div>
-                <div class="step animate-on-scroll">
-                    <div class="step-content">
-                        <h3 class="step-title">🎨 Graphics Rendering Engine</h3>
-                        <p class="step-description">Custom SDL2 rendering pipeline with sprite animation, dynamic lighting, and texture management</p>
-                    </div>
-                </div>
-                <div class="step animate-on-scroll">
-                    <div class="step-content">
-                        <h3 class="step-title">⚡ Performance Optimization</h3>
-                        <p class="step-description">Efficient collision detection, memory pooling, and 60fps real-time game loop implementation</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Key Technical Features</h2>
             <ul class="feature-list">
                 <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Advanced AI Behavior System</div>
-                    <div class="feature-description">A* pathfinding with view range detection, obstacle avoidance, and dynamic target tracking</div>
+                    <div class="feature-title">Game Engine from Scratch</div>
+                    <div class="feature-description">Modular C++ architecture with Window, Map, and Entity management systems</div>
                 </li>
                 <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Real-time Graphics Pipeline</div>
-                    <div class="feature-description">Custom rendering system with dynamic lighting, sprite animation, and blend mode effects</div>
+                    <div class="feature-title">Real-time Physics System</div>
+                    <div class="feature-description">Collision detection with bullet physics and entity interactions</div>
                 </li>
                 <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Physics & Collision System</div>
-                    <div class="feature-description">Real-time collision detection with bullet physics, entity interactions, and boundary checking</div>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Memory-Efficient Architecture</div>
-                    <div class="feature-description">Proper pointer management, resource allocation, and leak-free memory handling</div>
+                    <div class="feature-title">State Machine AI</div>
+                    <div class="feature-description">Zombie behavior with pathfinding, attack, and pursuit states</div>
                 </li>
             </ul>
         </section>
@@ -128,32 +123,6 @@
                 <strong>Result:</strong> Achieved smooth +60fps gameplay with intelligent AI enemies, dynamic lighting effects, and zero memory leaks through proper C++ programming practices.
             </div>
         </section>
-
-        <section class="section animate-on-scroll">
-            <h2 class="section-title animate-on-scroll">Core Systems Implemented</h2>
-            <ul class="feature-list">
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Game Engine Architecture</div>
-                    <div class="feature-description">Modular design with Window, Map, and Entity management systems using object-oriented principles</div>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Decision-Making Engine</div>
-                    <div class="feature-description">State machine implementation for zombie behavior with pathfinding, attack, and pursuit states</div>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Event-Driven Input System</div>
-                    <div class="feature-description">SDL2 event handling for keyboard, mouse input with real-time responsiveness</div>
-                </li>
-                <li class="feature-item animate-on-scroll">
-                    <div class="feature-title">Resource Management System</div>
-                    <div class="feature-description">Texture loading, sprite management, and memory optimization for game assets</div>
-                </li>
-            </ul>
-        </section>
-
-        <div class="cta-buttons animate-on-scroll">
-            <a href="https://github.com/MartinVillette/Zombie_Game" class="cta-button primary" target="_blank">View Source Code</a>
-        </div>
     </div>
 </body>
 </html>
