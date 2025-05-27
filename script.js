@@ -21,6 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastHoveredColor = { r: 168, g: 230, b: 207 }; // Store last hovered color
     let bubbles = []; // Array to store bubble instances
     let scrollY = 0; // Track scroll position
+    let isHoveringProjectButton = false; // Track if hovering over any project button
+
+    // Default fallback colors
+    const fallbackColors = [
+        { r: 254, g: 66, b: 66 },   // #fe4242
+        { r: 0, g: 139, b: 231 }    // #008be7
+    ];
 
     // Initialize colors
     const colorData = body.getAttribute('data-color');
@@ -38,9 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (primaryButton) primaryButton.setAttribute('style', `background-color: rgba(${newColor.r}, ${newColor.g}, ${newColor.b}, 0.1)`);
         cursorCircle.style.backgroundColor = `${colorData}80`;
     } else {
-        targetColor = { r: 168, g: 230, b: 207 };
-        currentColor = { ...targetColor };
-        cursorCircle.style.backgroundColor = `rgba(${targetColor.r}, ${targetColor.g}, ${targetColor.b}, 0.5)`;
+        // Use fallback colors when no color data is provided
+        const randomFallback = fallbackColors[Math.floor(Math.random() * fallbackColors.length)];
+        targetColor = randomFallback;
+        currentColor = { ...randomFallback };
+        cursorCircle.style.backgroundColor = `rgba(${randomFallback.r}, ${randomFallback.g}, ${randomFallback.b}, 0.5)`;
     }
 
     // Mouse position tracking
@@ -50,9 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Bubble class definition
     class Bubble {
-        constructor(baseColor) {
-            this.baseColor = baseColor;
-            this.color = this.generateColorVariation(baseColor);
+        constructor(baseColor, useFallbackColors = false, isEdgeBubble = false) {
+            if (useFallbackColors) {
+                // When using fallback colors, randomly choose between red and blue
+                this.baseColor = fallbackColors[Math.floor(Math.random() * fallbackColors.length)];
+            } else {
+                this.baseColor = baseColor;
+            }
+            
+            this.color = this.generateColorVariation(this.baseColor);
             this.targetColor = { ...this.color };
 
             const documentHeight = Math.max(
@@ -63,14 +78,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.documentElement.offsetHeight
             );
             
-            // Randomize properties
-            this.size = this.randomBetween(1000, 2500);
-            this.x = this.randomBetween(-this.size/4, window.innerWidth + this.size/4);
-            this.y = this.randomBetween(-this.size/4, documentHeight + this.size/4);
+            if (isEdgeBubble) {
+                // Very huge bubbles positioned at screen edges
+                this.size = this.randomBetween(3000, 5000);
+                
+                // Position at screen edges
+                const edge = Math.floor(Math.random() * 4); // 0: left, 1: right, 2: top, 3: bottom
+                switch(edge) {
+                    case 0: // Left edge
+                        this.x = this.randomBetween(-this.size * 0.8, -this.size * 0.4);
+                        this.y = this.randomBetween(-this.size/4, documentHeight + this.size/4);
+                        break;
+                    case 1: // Right edge
+                        this.x = this.randomBetween(window.innerWidth + this.size * 0.4, window.innerWidth + this.size * 0.8);
+                        this.y = this.randomBetween(-this.size/4, documentHeight + this.size/4);
+                        break;
+                    case 2: // Top edge
+                        this.x = this.randomBetween(-this.size/4, window.innerWidth + this.size/4);
+                        this.y = this.randomBetween(-this.size * 0.8, -this.size * 0.4);
+                        break;
+                    case 3: // Bottom edge
+                        this.x = this.randomBetween(-this.size/4, window.innerWidth + this.size/4);
+                        this.y = this.randomBetween(documentHeight + this.size * 0.4, documentHeight + this.size * 0.8);
+                        break;
+                }
+                
+                // Weaker parallax for edge bubbles
+                this.mouseParallaxStrength = this.randomBetween(0.005, 0.015);
+                this.scrollParallaxStrength = this.randomBetween(0.05, 0.15);
+            } else {
+                // Smaller bubbles inside the page
+                this.size = this.randomBetween(800, 1800);
+                this.x = this.randomBetween(-this.size/4, window.innerWidth + this.size/4);
+                this.y = this.randomBetween(-this.size/4, documentHeight + this.size/4);
+                
+                // Regular parallax for inside bubbles
+                this.mouseParallaxStrength = this.randomBetween(0.01, 0.03);
+                this.scrollParallaxStrength = this.randomBetween(0.1, 0.4);
+            }
             
-            // Parallax properties
-            this.mouseParallaxStrength = this.randomBetween(0.01, 0.03);
-            this.scrollParallaxStrength = this.randomBetween(0.1, 0.4); // Scroll parallax strength
             this.baseX = this.x;
             this.baseY = this.y;
             
@@ -148,6 +194,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Function to hide project image
+    function hideProjectImage() {
+        if (!isHoveringProjectButton) {
+            projectImage.classList.remove('visible');
+            projectImage.classList.remove('moving');
+            
+            setTimeout(() => {
+                if (!projectImage.classList.contains('visible')) {
+                    currentImage = null;
+                    projectImage.src = '';
+                }
+            }, 600);
+        }
+    }
+
     // Function to adjust image size based on aspect ratio
     function adjustImageSize(img) {
         // Reset any manual sizing
@@ -196,11 +257,20 @@ document.addEventListener('DOMContentLoaded', () => {
         
         bubbles = [];
         
-        // Determine bubble count based on page
-        let bubbleCount = 6 + Math.floor(body.offsetHeight / 300);
+        // Check if we should use fallback colors (no specific color or default green)
+        const shouldUseFallbackColors = !colorData || 
+            (color.r === 168 && color.g === 230 && color.b === 207);
         
-        for (let i = 0; i < bubbleCount; i++) {
-            bubbles.push(new Bubble(color));
+        // Create edge bubbles (very huge)
+        const edgeBubbleCount = 2 + Math.floor(Math.random() * 3); // 2-4 edge bubbles
+        for (let i = 0; i < edgeBubbleCount; i++) {
+            bubbles.push(new Bubble(color, shouldUseFallbackColors, true));
+        }
+        
+        // Create inside bubbles (smaller)
+        const insideBubbleCount = 3 + Math.floor(body.offsetHeight / 400); // 3+ inside bubbles
+        for (let i = 0; i < insideBubbleCount; i++) {
+            bubbles.push(new Bubble(color, shouldUseFallbackColors, false));
         }
         
         return bubbles;
@@ -262,6 +332,18 @@ document.addEventListener('DOMContentLoaded', () => {
         cursorCircle.style.left = mouseX + 'px';
         cursorCircle.style.top = mouseY + 'px';
 
+        // Check if mouse is over any project button
+        const hoveredElement = document.elementFromPoint(mouseX, mouseY);
+        const isOverProjectButton = hoveredElement && (
+            hoveredElement.classList.contains('project-button') || 
+            hoveredElement.closest('.project-button')
+        );
+        
+        if (!isOverProjectButton && isHoveringProjectButton) {
+            isHoveringProjectButton = false;
+            hideProjectImage();
+        }
+
         const coefX = 0.02;
         const coefY = 0.05;
         
@@ -286,6 +368,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Project button interactions
     buttons.forEach(button => {
         button.addEventListener('mouseenter', () => {
+            isHoveringProjectButton = true;
+            
             const imagePath = button.getAttribute('data-image');
             const colorData = button.getAttribute('data-color');
           
@@ -320,18 +404,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       
         button.addEventListener('mouseleave', () => {
+            isHoveringProjectButton = false;
+            
             targetColor = lastHoveredColor;
             cursorCircle.style.backgroundColor = `rgba(${lastHoveredColor.r}, ${lastHoveredColor.g}, ${lastHoveredColor.b}, 0.5)`;
           
-            projectImage.classList.remove('visible');
-            projectImage.classList.remove('moving');
-          
+            // Add a small delay before hiding to prevent flickering when moving between buttons
             setTimeout(() => {
-                if (!projectImage.classList.contains('visible')) {
-                    currentImage = null;
-                    projectImage.src = '';
-                }
-            }, 600);
+                hideProjectImage();
+            }, 50);
         });
     });
 

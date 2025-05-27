@@ -338,6 +338,9 @@ body {
         z-index: 10;
         width: 100%;
     }
+    .project-image{
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
