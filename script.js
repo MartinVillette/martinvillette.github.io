@@ -3,11 +3,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.project-button');
     const body = document.body;
     const projectImage = document.querySelector('.project-image');
-    const projectVideo = document.querySelector('.project-video'); // Add video element
-    const header = document.querySelector('.header'); // Reference to header
-    const name = document.querySelector('#name'); // Reference to name element
+    const projectVideo = document.querySelector('.project-video');
+    const header = document.querySelector('.header');
+    const name = document.querySelector('#name');
     const primaryButton = document.querySelector('.primary');
     const background = document.getElementById('background');
+
+    // Create page transition overlay
+    const pageTransition = document.createElement('div');
+    pageTransition.className = 'page-transition';
+    pageTransition.innerHTML = '<div class="transition-spinner"></div>';
+    document.body.appendChild(pageTransition);
 
     // Track mouse position
     const mouse = {
@@ -23,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let bubbles = []; // Array to store bubble instances
     let scrollY = 0; // Track scroll position
     let isHoveringProjectButton = false; // Track if hovering over any project button
+    let isNavigating = false; // Prevent multiple navigation attempts
 
     // Default fallback colors
     const fallbackColors = [
@@ -57,6 +64,29 @@ document.addEventListener('DOMContentLoaded', () => {
     let mouseX = 0;
     let mouseY = 0;
     let currentImage = null;
+
+    // Function to handle smooth page transition
+    function navigateToProject(url, button) {
+        if (isNavigating) return; // Prevent multiple navigation attempts
+        isNavigating = true;
+        
+        // Add clicking animation to button
+        button.classList.add('clicking');
+        
+        // Hide project media immediately
+        hideAllProjectMedia();
+        
+        // Start page transition
+        setTimeout(() => {
+            pageTransition.classList.add('active');
+            document.body.classList.add('page-scale-out');
+            
+            // Navigate after animation
+            setTimeout(() => {
+                window.location.href = url;
+            }, 400);
+        }, 100);
+    }
 
     // Bubble class definition
     class Bubble {
@@ -480,6 +510,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Project button interactions
     buttons.forEach(button => {
+        // Add click event listener for smooth navigation
+        button.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default navigation
+            const url = button.getAttribute('href');
+            if (url) {
+                navigateToProject(url, button);
+            }
+        });
+
         button.addEventListener('mouseenter', () => {
             isHoveringProjectButton = true;
             
@@ -513,12 +552,15 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('mouseleave', () => {
             isHoveringProjectButton = false;
             
+            // Remove clicking class if present
+            button.classList.remove('clicking');
+            
             targetColor = lastHoveredColor;
             cursorCircle.style.backgroundColor = `rgba(${lastHoveredColor.r}, ${lastHoveredColor.g}, ${lastHoveredColor.b}, 0.5)`;
           
             // Add a small delay before hiding to prevent flickering when moving between buttons
             setTimeout(() => {
-                hideProjectMedia(); // Updated function name
+                hideProjectMedia();
             }, 50);
         });
     });
