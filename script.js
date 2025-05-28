@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.project-button');
     const body = document.body;
     const projectImage = document.querySelector('.project-image');
+    const projectVideo = document.querySelector('.project-video'); // Add video element
     const header = document.querySelector('.header'); // Reference to header
     const name = document.querySelector('#name'); // Reference to name element
     const primaryButton = document.querySelector('.primary');
@@ -194,19 +195,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Function to hide project image
-    function hideProjectImage() {
-        if (!isHoveringProjectButton) {
+    // Function to hide all project media
+    function hideAllProjectMedia() {
+        if (projectImage) {
             projectImage.classList.remove('visible');
             projectImage.classList.remove('moving');
-            
-            setTimeout(() => {
-                if (!projectImage.classList.contains('visible')) {
-                    currentImage = null;
-                    projectImage.src = '';
-                }
-            }, 600);
         }
+        
+        if (projectVideo) {
+            projectVideo.classList.remove('visible');
+            projectVideo.classList.remove('moving');
+        }
+        
+        setTimeout(() => {
+            if (projectImage && !projectImage.classList.contains('visible')) {
+                projectImage.src = '';
+            }
+            if (projectVideo && !projectVideo.classList.contains('visible')) {
+                projectVideo.pause();
+                projectVideo.currentTime = 0;
+                projectVideo.src = '';
+            }
+        }, 600);
     }
 
     // Function to adjust image size based on aspect ratio
@@ -244,6 +254,100 @@ document.addEventListener('DOMContentLoaded', () => {
         // Apply the calculated dimensions
         img.style.width = width + 'px';
         img.style.height = height + 'px';
+    }
+
+    // Function to hide project media when not hovering any button
+    function hideProjectMedia() {
+        if (!isHoveringProjectButton) {
+            hideAllProjectMedia();
+            currentImage = null;
+        }
+    }
+
+    // Function to show video and hide image
+    function showVideo(videoPath) {
+        // First hide any existing image
+        if (projectImage) {
+            projectImage.classList.remove('visible');
+            projectImage.classList.remove('moving');
+            projectImage.src = '';
+        }
+        
+        // Then show video
+        if (projectVideo) {
+            currentImage = videoPath;
+            projectVideo.src = videoPath;
+            adjustVideoSize(projectVideo);
+            projectVideo.play();
+            
+            setTimeout(() => {
+                if (projectVideo) {
+                    projectVideo.classList.add('visible');
+                    projectVideo.classList.remove('moving');
+                }
+            }, 50);
+        }
+    }
+
+    // Function to show image and hide video
+    function showImage(imagePath) {
+        // First hide any existing video
+        if (projectVideo) {
+            projectVideo.classList.remove('visible');
+            projectVideo.classList.remove('moving');
+            projectVideo.pause();
+            projectVideo.currentTime = 0;
+            projectVideo.src = '';
+        }
+        
+        // Then show image
+        if (projectImage) {
+            currentImage = imagePath;
+            projectImage.src = imagePath;
+            adjustImageSize(projectImage);
+            
+            setTimeout(() => {
+                if (projectImage) {
+                    projectImage.classList.add('visible');
+                    projectImage.classList.remove('moving');
+                }
+            }, 50);
+        }
+    }
+
+    // Function to adjust video size based on aspect ratio
+    function adjustVideoSize(video) {
+        if (!video) return;
+        
+        video.style.width = 'auto';
+        video.style.height = 'auto';
+        
+        if (video.readyState >= 1) {
+            setVideoDimensions(video);
+        } else {
+            video.onloadedmetadata = () => setVideoDimensions(video);
+        }
+    }
+    
+    function setVideoDimensions(video) {
+        if (!video) return;
+        
+        const aspectRatio = video.videoWidth / video.videoHeight;
+        const maxWidth = window.innerWidth * 0.4;
+        const maxHeight = window.innerHeight * 0.6;
+        
+        let width, height;
+        
+        if (aspectRatio > maxWidth / maxHeight) {
+            width = Math.min(maxWidth, video.videoWidth);
+            height = width / aspectRatio;
+        } else {
+            height = Math.min(maxHeight, video.videoHeight);
+            width = height * aspectRatio;
+        }
+        
+        video.style.width = width + 'px';
+        video.style.height = height + 'px';
     }
 
     // Create bubbles based on page type
@@ -341,19 +445,28 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (!isOverProjectButton && isHoveringProjectButton) {
             isHoveringProjectButton = false;
-            hideProjectImage();
+            hideProjectMedia();
         }
 
         const coefX = 0.02;
         const coefY = 0.05;
         
-        // Update project image translation if visible
-        if (currentImage && projectImage.classList.contains('visible')) {
+        // Update project media translation if visible
+        if (currentImage && (projectImage.classList.contains('visible') || projectVideo.classList.contains('visible'))) {
             const moveX = (mouseX - window.innerWidth / 2) * coefX + 'px';
             const moveY = (mouseY - window.innerHeight / 2) * coefY + 'px';
-            projectImage.style.setProperty('--tx', moveX);
-            projectImage.style.setProperty('--ty', moveY);
-            projectImage.classList.add('moving');
+            
+            if (projectImage.classList.contains('visible')) {
+                projectImage.style.setProperty('--tx', moveX);
+                projectImage.style.setProperty('--ty', moveY);
+                projectImage.classList.add('moving');
+            }
+            
+            if (projectVideo.classList.contains('visible')) {
+                projectVideo.style.setProperty('--tx', moveX);
+                projectVideo.style.setProperty('--ty', moveY);
+                projectVideo.classList.add('moving');
+            }
         }
         
         // Update header movement: smaller coefficients for subtle movement
@@ -371,6 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isHoveringProjectButton = true;
             
             const imagePath = button.getAttribute('data-image');
+            const videoPath = button.getAttribute('data-video');
             const colorData = button.getAttribute('data-color');
           
             if (colorData) {
@@ -389,17 +503,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateBubbleColors(newColor);
             }
           
-            if (imagePath) {
-                currentImage = imagePath;
-                projectImage.src = imagePath;
-                
-                // Adjust image size based on its aspect ratio
-                adjustImageSize(projectImage);
-                
-                setTimeout(() => {
-                    projectImage.classList.add('visible');
-                    projectImage.classList.remove('moving');
-                }, 50);
+            if (videoPath) {
+                showVideo(videoPath);
+            } else if (imagePath) {
+                showImage(imagePath);
             }
         });
       
@@ -411,15 +518,20 @@ document.addEventListener('DOMContentLoaded', () => {
           
             // Add a small delay before hiding to prevent flickering when moving between buttons
             setTimeout(() => {
-                hideProjectImage();
+                hideProjectMedia(); // Updated function name
             }, 50);
         });
     });
 
     // Handle window resize to readjust image sizes
     window.addEventListener('resize', () => {
-        if (currentImage && projectImage.classList.contains('visible')) {
-            adjustImageSize(projectImage);
+        if (currentImage) {
+            if (projectImage.classList.contains('visible')) {
+                adjustImageSize(projectImage);
+            }
+            if (projectVideo.classList.contains('visible')) {
+                adjustVideoSize(projectVideo);
+            }
         }
     });
 

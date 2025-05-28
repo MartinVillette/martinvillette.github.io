@@ -61,6 +61,17 @@
         box-shadow 0.3s ease;
 }
 
+
+@keyframes breatheSection {
+    0%, 100% {
+        transform: translateY(-2px);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+
 .section-hover {
     background-color: rgba(255, 255, 255, 0.5);
     transform: translateY(-2px);
@@ -68,6 +79,8 @@
     transition: background-color 0.5s ease,
     transform 0.5s ease,
     box-shadow 0.5s ease;
+    animation: breatheSection 3s ease-in-out infinite;
+    will-change: transform, background-color, box-shadow;
 }
 
 .section:hover {
@@ -404,11 +417,6 @@
     
     .contact-links {
         grid-template-columns: 1fr;
-    }
-    
-    .journey-item {
-        flex-direction: column;
-        text-align: center;
     }
     
     .timeline-item {
