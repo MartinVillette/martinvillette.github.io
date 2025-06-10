@@ -65,6 +65,36 @@ document.addEventListener('DOMContentLoaded', () => {
     let mouseY = 0;
     let currentImage = null;
 
+    // Function to reset navigation state
+    function resetNavigationState() {
+        isNavigating = false;
+        pageTransition.classList.remove('active');
+        document.body.classList.remove('page-scale-out');
+        
+        // Reset any clicking animations on buttons
+        buttons.forEach(button => {
+            button.classList.remove('clicking');
+        });
+    }
+
+    // Reset navigation state when page becomes visible (back navigation)
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+            setTimeout(resetNavigationState, 100);
+        }
+    });
+
+    // Also reset on page load/focus
+    window.addEventListener('pageshow', (event) => {
+        // This handles back/forward navigation
+        setTimeout(resetNavigationState, 100);
+    });
+
+    // Reset on window focus (when returning from another tab/window)
+    window.addEventListener('focus', () => {
+        setTimeout(resetNavigationState, 100);
+    });
+
     // Function to handle smooth page transition
     function navigateToProject(url, button) {
         if (isNavigating) return; // Prevent multiple navigation attempts
@@ -76,6 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide project media immediately
         hideAllProjectMedia();
         
+        // Add a fallback timeout to reset state if navigation fails
+        const navigationTimeout = setTimeout(() => {
+            resetNavigationState();
+        }, 2000); // Reset after 2 seconds if navigation doesn't complete
+        
         // Start page transition
         setTimeout(() => {
             pageTransition.classList.add('active');
@@ -83,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Navigate after animation
             setTimeout(() => {
+                clearTimeout(navigationTimeout); // Clear the fallback timeout
                 window.location.href = url;
             }, 400);
         }, 100);

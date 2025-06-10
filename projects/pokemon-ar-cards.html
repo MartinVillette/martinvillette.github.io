@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martin Villette - Pokemon AR Cards</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../assets/css/project.css">
+    <link rel="icon" href="../assets/icons/logo-portfolio.svg" type="svg">
+    <script src="../script.js" defer></script>
+    <script src="../assets/js/project-animations.js" defer></script>
+    <script src="../assets/js/table-of-contents.js" defer></script>
+</head>
+<body data-color="#FF6B35">
+    <div class="background" id="background">
+        <div class="grain"></div>
+    </div>
+
+    <div class="cursor-circle" id="cursorCircle"></div>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-close" id="modalClose">×</div>
+        <img src="" alt="" class="modal-image" id="modalImage">
+    </div>
+
+    <a href="../index.html" class="back-button">←</a>
+
+    <header class="project-header">
+        <h1 class="title">Pokemon AR Cards</h1>
+        <p class="subtitle">Augmented Reality mobile application bringing Pokemon trading cards to life with 3D models, real-time card scanning, TCG API integration, and interactive AR experiences using Unity and AR Foundation.</p>
+        
+        <div class="cta-buttons">
+            <!-- <a href="#" class="cta-button primary" target="_blank">🎮 Download APK</a> -->
+            <a href="https://github.com/YourUsername/Pokemon_AR" class="cta-button secondary" target="_blank">📂 Source Code</a>
+        </div>
+
+        <div class="status-container animate-on-scroll">
+            <div class="status-badge in-progress">
+                <div class="status-icon"></div>
+                In Development
+            </div>
+            <div class="status-badge beta">
+                <div class="status-icon"></div>
+                AR Prototype
+            </div>
+        </div>  
+
+        <div class="tech-stack animate-on-scroll">
+            <span class="tech-tag">Unity 3D</span>
+            <span class="tech-tag">Vuforia</span>
+            <span class="tech-tag">C#</span>
+            <span class="tech-tag">Pokemon TCG API</span>
+            <span class="tech-tag">Computer Vision</span>
+            <span class="tech-tag">Android</span>
+        </div>
+
+        <div class="icon-container">
+            <img class="project-icon" src="../assets/icons/logo-unity.svg" alt="Unity">
+            <img class="project-icon" src="../assets/icons/logo-csharp.svg" alt="C#">
+            <img class="project-icon" src="../assets/icons/logo-android.svg" alt="Android">
+        </div>
+    </header>
+
+    <div class="project-container">
+        <section class="section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Key Features</h2>
+            <ul class="location-benefits animate-on-scroll">
+                <li>📱 <strong>Real-time AR Card Scanning:</strong> Image recognition technology to identify Pokemon cards instantly</li>
+                <li>🎮 <strong>3D Pokemon Models:</strong> Interactive 3D models that appear above scanned cards with authentic animations</li>
+                <li>💰 <strong>Live TCG Market Data:</strong> Real-time card prices and market information via Pokemon TCG API</li>
+                <li>🔄 <strong>Automated Data Processing:</strong> Custom Unity Editor tools for batch processing card data and 3D models</li>
+            </ul>
+        </section>
+
+        <section class="section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Technical Implementation</h2>
+            <div class="workflow-steps">
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">📸 Computer Vision & AR</h3>
+                        <p class="step-description">Unity AR Foundation with image tracking for real-time card recognition and 3D model positioning</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">🎨 3D Asset Pipeline</h3>
+                        <p class="step-description">Automated download and processing of Pokemon 3D models with custom Unity Editor tools</p>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll">
+                    <div class="step-content">
+                        <h3 class="step-title">📊 Data Management</h3>
+                        <p class="step-description">RESTful API integration with Pokemon TCG database for live card information and pricing</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Innovation & User Experience</h2>
+            <ul class="feature-list">
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Instant Card Recognition</div>
+                    <div class="feature-description">Advanced image tracking algorithms for fast and accurate Pokemon card identification</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Immersive AR Experience</div>
+                    <div class="feature-description">Life-like 3D Pokemon models with interactive animations and realistic scaling</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Real-time Market Data</div>
+                    <div class="feature-description">Live TCG pricing and card information displayed in the AR interface</div>
+                </li>
+                <li class="feature-item animate-on-scroll">
+                    <div class="feature-title">Automated Content Pipeline</div>
+                    <div class="feature-description">Custom Unity Editor tools for efficient batch processing of 800+ Pokemon cards and models</div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Development Tools & Automation</h2>
+            <div class="section-content animate-on-scroll">
+                <strong>Editor Tools:</strong> Built custom Unity Editor windows for automated Pokemon TCG data processing, including batch download of card images, 3D models, and market data with progress tracking and error handling.
+            </div>
+            <div class="section-content animate-on-scroll">
+                <strong>Data Pipeline:</strong> Implemented Python and C# scripts for processing Pokemon TCG API responses, downloading assets, and generating Unity-compatible JSON data structures for efficient runtime loading.
+            </div>
+            <div class="section-content animate-on-scroll">
+                <strong>Asset Management:</strong> Developed file existence checking, overwrite controls, and path management systems to handle thousands of Pokemon assets efficiently.
+            </div>
+        </section>
+
+        <section class="section animate-on-scroll">
+            <h2 class="section-title animate-on-scroll">Problem Solving & Innovation</h2>
+            <div class="section-content animate-on-scroll">
+                <strong>Challenge:</strong> Create an immersive AR experience that accurately recognizes Pokemon trading cards and displays relevant 3D models with live market data, while managing hundreds of assets efficiently.
+            </div>
+            <div class="section-content animate-on-scroll">
+                <strong>Solution:</strong> Developed Unity AR Foundation application with computer vision for card recognition, integrated Pokemon TCG API for live data, and built custom automation tools for asset management and data processing.
+            </div>
+            <div class="section-content animate-on-scroll">
+                <strong>Result:</strong> Successfully created working AR prototype with real-time card scanning, 3D Pokemon visualization, live market pricing, and efficient content management system supporting 800+ Pokemon cards.
+            </div>
+        </section>
+    </div>
+</body>
+</html>
